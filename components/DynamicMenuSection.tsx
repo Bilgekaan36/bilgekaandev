@@ -141,7 +141,7 @@ export const DynamicMenuSection = () => {
       <div className='sticky top-0 min-h-screen flex flex-col justify-center'>
         <div className='max-w-7xl mx-auto px-6 w-full'>
           {/* Header */}
-          <div className='text-left mb-20'>
+          {/* <div className='text-left mb-20'>
             <h2 className='text-5xl lg:text-7xl font-bold mb-6'>
               KENNST DU DIESE{' '}
               <span className='text-red-500 block lg:inline'>
@@ -151,7 +151,7 @@ export const DynamicMenuSection = () => {
             <p className='text-xl text-gray-300'>
               Lass uns diese gemeinsam überwältigen!
             </p>
-          </div>
+          </div> */}
 
           <div className='grid lg:grid-cols-2 gap-16 items-center'>
             {/* Left Menu */}
