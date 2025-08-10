@@ -5,6 +5,7 @@ import { DynamicMenuSection } from '@/components/DynamicMenuSection';
 import { Hero } from '@/components/Hero';
 import { LaunchSection } from '@/components/LaunchSection';
 import { ProcessSection } from '@/components/ProcessSection';
+import { ProjectsSection } from '@/components/ProjectsSection';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <BentoGridSection />
       <ProcessSection />
       <LaunchSection />
+      <ProjectsSection />
     </div>
   );
 }
