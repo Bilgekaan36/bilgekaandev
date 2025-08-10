@@ -1,6 +1,16 @@
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { ScrollIndicator } from './ScrollIndicator';
+import { GradientText } from './ui/gradient-text';
+import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import {
+  Marquee,
+  MarqueeContent,
+  MarqueeFade,
+  MarqueeItem,
+} from './ui/marquee';
+import { ReactBadge } from './ReactBadge';
+import { AvatarGroupComponent } from './AvatarGroup';
 
 export const Hero = () => {
   return (
@@ -48,45 +58,44 @@ export const Hero = () => {
       </div>
       <div className='mx-auto max-w-7xl px-6 pt-10 pb-24 sm:pb-32 lg:flex lg:px-8 lg:py-40'>
         <div className='mx-auto max-w-2xl shrink-0 lg:mx-0 lg:pt-8'>
-          {/* <Image
-            alt='Your Company'
-            src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500'
-            className='h-11'
-            width={100}
-            height={100}
-          /> */}
-          <div className='mt-24 sm:mt-32 lg:mt-16'>
-            <a href='#' className='inline-flex space-x-6'>
-              <span className='rounded-full bg-indigo-500/10 px-3 py-1 text-sm/6 font-semibold text-indigo-400 ring-1 ring-indigo-500/25 ring-inset'>
-                React Expert
-              </span>
-              <span className='inline-flex items-center space-x-2 text-sm/6 font-medium text-gray-300'>
-                <span>Full Stack Entwickler</span>
-                <ChevronRightIcon
-                  aria-hidden='true'
-                  className='size-5 text-gray-500'
-                />
-              </span>
-            </a>
+          <div className='flex gap-6 mt-20 sm:mt-28 lg:mt-12'>
+            <ReactBadge text='REACT EXPERTE' variant='neon' />
+            <AvatarGroupComponent />
           </div>
-          <h1 className='mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl'>
-            Fullstack Power für Ihre Projekte.
+          <h1 className='font-orbitron mt-5 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl'>
+            <GradientText className='' text='Full Stack Power' /> für Ihre
+            Projekte.
           </h1>
           <p className='mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8'>
             5+ Jahre Erfahrung mit React, Next.js, Node.js & TypeScript. Ich
             liefere performante Frontends, robuste Backends und saubere
-            Architektur – On-Demand, Remote und sofort einsatzbereit.
+            Architektur On-Demand, Remote und sofort einsatzbereit.
           </p>
           <div className='mt-10 flex items-center gap-x-6'>
-            <a
-              href='#'
-              className='rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
-            >
-              Get started
-            </a>
-            <a href='#' className='text-sm/6 font-semibold text-white'>
-              Learn more <span aria-hidden='true'>→</span>
-            </a>
+            <AnimatedCTAButton
+              text='ERSTGESPRÄCH'
+              variant='xl'
+              onClick={() => alert('XL Button geklickt!')}
+            />
+          </div>
+          <div className='flex items-center justify-center mt-12'>
+            <Marquee>
+              <MarqueeFade side='left' />
+              <MarqueeFade side='right' />
+              <MarqueeContent>
+                {new Array(6).fill(null).map((_, index) => (
+                  <MarqueeItem className='h-12 w-12' key={index}>
+                    <Image
+                      alt={`Placeholder ${index}`}
+                      className='overflow-hidden rounded-full'
+                      src='/react-logo.png'
+                      height={100}
+                      width={100}
+                    />
+                  </MarqueeItem>
+                ))}
+              </MarqueeContent>
+            </Marquee>
           </div>
         </div>
         <div className='mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:mt-0 lg:mr-0 lg:ml-10 lg:max-w-none lg:flex-none xl:ml-32'>

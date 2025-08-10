@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { GradientText } from './ui/gradient-text';
 
 export const DynamicMenuSection = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -127,10 +128,19 @@ export const DynamicMenuSection = () => {
 
   const getGradientColor = (index: number) => {
     const colors = [
-      'from-red-500 to-red-600',
-      'from-blue-500 to-blue-600',
-      'from-green-500 to-green-600',
-      'from-purple-500 to-purple-600',
+      // 7) Smaragd → Rot (starker Farbkonflikt für Aufmerksamkeit)
+      'from-[#10b981] to-[#ef4444]',
+
+      // 8) Kaltblau → Warmrot (kräftige Dualität)
+      'from-[#3b82f6] to-[#f43f5e]',
+      // 4) Türkis → Tiefes Lila (cool/warm Tech-Look)
+      'from-[#2dd4bf] to-[#7c3aed]',
+
+      // 5) Helles Cyan → Gelb (freundlich/auffällig)
+      'from-[#06b6d4] to-[#fde047]',
+
+      // 6) React-Blau → Neonpink (UI-Highlight)
+      'from-[#61dafb] to-[#ec4899]',
     ];
     return colors[index] || colors[0];
   };
@@ -141,12 +151,10 @@ export const DynamicMenuSection = () => {
       <div className='sticky top-0 min-h-screen flex flex-col justify-center'>
         <div className='max-w-7xl mx-auto px-6 w-full'>
           {/* Header */}
-          <div className='text-left mb-20'>
-            <h2 className='text-5xl lg:text-7xl font-bold mb-6'>
-              KENNST DU DIESE{' '}
-              <span className='text-red-500 block lg:inline'>
-                HERAUSFORDERUNGEN?
-              </span>
+          <div className='font-orbitron text-left mb-20'>
+            <h2 className='font-orbitron mt-5 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl'>
+              KENNST DU DIESE
+              <GradientText className='' text='HERAUSFORDERUNGEN?' />
             </h2>
             <p className='text-xl text-gray-300'>
               Lass uns diese gemeinsam überwältigen!
@@ -274,7 +282,7 @@ export const DynamicMenuSection = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div>
+                {/* <div>
                   <button
                     className={`
                     px-10 py-5 rounded-xl font-semibold text-lg transition-all duration-700 transform hover:scale-105
@@ -286,7 +294,7 @@ export const DynamicMenuSection = () => {
                   >
                     Lösung entdecken
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

@@ -1,29 +1,30 @@
 'use client';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Orbitron } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const orbitron = Orbitron({
+  variable: '--font-orbitron',
   subsets: ['latin'],
+  weight: ['400', '700', '800', '900'],
+  display: 'swap',
 });
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
+        className={`${inter.variable} ${orbitron.variable} font-sans antialiased relative`}
       >
         <Navbar />
         <ParallaxProvider>{children}</ParallaxProvider>
