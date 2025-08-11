@@ -5,8 +5,9 @@ import { BlogSection } from '@/components/BlogSection';
 import { CallToActionSection } from '@/components/CallToActionSection';
 import { DynamicMenuSection } from '@/components/DynamicMenuSection';
 import { FAQSection } from '@/components/FAQSection';
-import { Hero } from '@/components/Hero';
+import { HeroSection } from '@/components/HeroSection';
 import { LaunchSection } from '@/components/LaunchSection';
+import { NewsletterSection } from '@/components/NewsletterSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { TestimonialsSection } from '@/components/TestimonialsSection';
@@ -14,7 +15,7 @@ import { TestimonialsSection } from '@/components/TestimonialsSection';
 export default function Home() {
   return (
     <div>
-      <Hero />
+      <HeroSection />
       <DynamicMenuSection />
       <AboutSection />
       <BentoGridSection />
@@ -25,6 +26,7 @@ export default function Home() {
       <CallToActionSection />
       <FAQSection />
       <BlogSection />
+      <NewsletterSection />
     </div>
   );
 }

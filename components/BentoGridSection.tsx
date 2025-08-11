@@ -1,20 +1,20 @@
 import Image from 'next/image';
+import { GradientText } from './ui/gradient-text';
 
 export const BentoGridSection = () => {
   return (
-    <div className='bg-gray-900 py-24 sm:py-32'>
+    <div className='bg-gray-900 py-24 sm:py-24'>
       <div className='mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8'>
         {/* Header */}
-        <div className='text-left mb-20'>
-          <h2 className='text-5xl text-white lg:text-7xl font-bold mb-6'>
-            Wie sieht unsere Erfolgreiche{' '}
-            <span className='text-red-500 block lg:inline'>
-              Zusammenarbeit aus?
-            </span>
+        <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <span className='block sm:inline'>Wie sieht unsere</span>{' '}
+            <GradientText
+              className='inline-block sm:inline'
+              text='Erfolgreiche Zusammenarbeit'
+            />{' '}
+            aus?
           </h2>
-          <p className='text-xl text-gray-300'>
-            Lass uns diese gemeinsam überwältigen!
-          </p>
         </div>
         <div className='mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2'>
           <div className='relative lg:row-span-2'>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
+import { GradientText } from './ui/gradient-text';
 
 export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -45,13 +46,14 @@ export const FAQSection = () => {
 
   return (
     <section className='bg-black py-20 px-6'>
-      <div className='max-w-4xl mx-auto'>
+      <div className='max-w-7xl mx-auto'>
         {/* Header */}
-        <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-16'>
-          <span className='text-white'>HÄUFIG GESTELLTE</span>
-          <br />
-          <span className='text-blue-500 italic'>FRAGEN</span>
-        </h2>
+        <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <span className='block sm:block'>Häufig gestellte</span>{' '}
+            <GradientText className='inline-block sm:inline' text='Fragen' />
+          </h2>
+        </div>
 
         {/* FAQ Items */}
         <div className='space-y-0'>
@@ -62,15 +64,15 @@ export const FAQSection = () => {
                 className='w-full py-6 lg:py-8 text-left group'
               >
                 <div className='flex items-center justify-between'>
-                  <h3 className='text-white text-lg md:text-xl lg:text-2xl font-medium pr-4 group-hover:text-blue-400 transition-colors duration-300'>
+                  <h3 className='text-white text-lg md:text-xl lg:text-2xl font-medium pr-4 transition-colors duration-300 group-hover:bg-gradient-to-r group-hover:from-[#61dafb] group-hover:via-[#4cc3a5] group-hover:via-[#41b883] group-hover:via-[#4cc3a5] group-hover:to-[#61dafb] group-hover:bg-clip-text group-hover:text-transparent'>
                     {faq.question}
                   </h3>
                   <div className='flex-shrink-0'>
                     <div
-                      className={`w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center transition-all duration-500 group-hover:border-blue-400 ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
                         openIndex === index
-                          ? 'rotate-45 bg-blue-500 border-blue-500'
-                          : ''
+                          ? 'rotate-45 bg-gradient-to-r from-[#61dafb] via-[#4cc3a5] to-[#41b883]'
+                          : 'border border-gray-600 group-hover:border-[#4cc3a5]'
                       }`}
                     >
                       <Plus
@@ -84,7 +86,6 @@ export const FAQSection = () => {
                   </div>
                 </div>
               </button>
-
               {/* Answer */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${

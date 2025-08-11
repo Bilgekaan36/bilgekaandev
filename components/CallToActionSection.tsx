@@ -1,27 +1,27 @@
+import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import { GradientText } from './ui/gradient-text';
+
 export const CallToActionSection = () => {
   return (
     <div className='bg-indigo-700'>
       <div className='px-6 py-24 sm:px-6 sm:py-32 lg:px-8'>
-        <div className='mx-auto max-w-2xl text-center'>
-          <h2 className='text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl'>
-            Deine erste Sektion innerhalb von 36 Stunden in React
-          </h2>
-          <p className='mx-auto mt-6 max-w-xl text-lg/8 text-pretty text-indigo-200'>
-            Incididunt sint fugiat pariatur cupidatat consectetur sit cillum
-            anim id veniam aliqua proident excepteur commodo do ea.
-          </p>
-          <div className='mt-10 flex items-center justify-center gap-x-6'>
-            <a
-              href='#'
-              className='rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-xs hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
-            >
-              {' '}
-              Get started{' '}
-            </a>
-            <a href='#' className='text-sm/6 font-semibold text-white'>
-              Learn more
-              <span aria-hidden='true'>→</span>
-            </a>
+        <div className='mx-auto max-w-4xl flex flex-col'>
+          <div className='font-orbitron text-center mb-10 md:mb-16 lg:mb-20'>
+            <h2 className='font-orbitron font-semibold leading-none text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+              <span className='inline sm:block'>Du bekommst innerhalb von</span>{' '}
+              <GradientText className='inline sm:inline' text='24 Stunden' />{' '}
+              eine Antwort
+            </h2>
+            <p className='text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl mt-3 md:mt-6 lg:mt-10'>
+              Lass uns dein Projekt gemeinsam voranbringen!
+            </p>
+          </div>
+          <div className='self-center'>
+            <AnimatedCTAButton
+              text='ERSTGESPRÄCH'
+              variant='xl'
+              onClick={() => alert('XL Button geklickt!')}
+            />
           </div>
         </div>
       </div>

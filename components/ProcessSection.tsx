@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Parallax } from 'react-scroll-parallax';
+import { GradientText } from './ui/gradient-text';
 
 export const ProcessSection = () => {
   const [progress, setProgress] = useState(100);
@@ -102,12 +103,28 @@ export const ProcessSection = () => {
 
   return (
     <div
-      className='mx-auto max-w-2xl pt-32 px-6 lg:max-w-7xl lg:px-8 bg-gray-900 transition-colors duration-500 md:flex md:gap-12'
+      className='mx-auto max-w-2xl pt-32 px-3 sm:px-6 lg:max-w-7xl lg:px-8 bg-gray-900 transition-colors duration-500 flex flex-col md:flex-row md:gap-3'
       style={{ backgroundColor: activeBackground }}
     >
+      {/* Title Section */}
+      <div className='md:sticky top-12 h-fit lg:top-24 order-first lg:h-fit w-full md:w-3/6 z-100'>
+        <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold text-gray-400 text-[1.75em] sm:text-4xl md:text-5xl tracking-tight mt-4 md:mt-5'>
+            <span className='inline sm:inline'>Ich baue</span>{' '}
+            <GradientText
+              className='inline sm:inline'
+              text='digitale Erlebnisse'
+            />{' '}
+            die wirken!
+          </h2>
+          <p className='text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-2xl'>
+            Mein Prozess bringt den Erfolg!
+          </p>
+        </div>
+      </div>
       {/* Process Steps */}
       <Parallax onProgressChange={handleProgress}>
-        <div className='w-full relative'>
+        <div className='w-full md:w-11/12 order-2 relative'>
           {/* Progress Line */}
           <div
             className='absolute top-0 left-0 bg-[#1e1f26] w-[2px] sm:w-[3px]'
@@ -163,19 +180,6 @@ export const ProcessSection = () => {
           ))}
         </div>
       </Parallax>
-      {/* Title Section */}
-      <div className='lg:sticky lg:top-24 lg:h-fit'>
-        <h2 className='text-[#1e1f26] text-2xl md:text-3xl lg:text-5xl font-bold leading-tight mb-4'>
-          We build digital
-          <br />
-          experiences that matter
-        </h2>
-        <p className='text-[#848484] text-lg md:text-xl lg:text-2xl font-normal'>
-          From concept to launch,
-          <br />
-          were with you every step of the way
-        </p>
-      </div>
     </div>
   );
 };

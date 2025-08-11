@@ -8,6 +8,7 @@ import type { InteractivityProps } from 'lottie-react';
 // Import these in your actual implementation:
 import rocket from '@/public/Rocket.json';
 import confetti from '@/public/Confetti.json';
+import { GradientText } from './ui/gradient-text';
 
 type ActionType = 'seek' | 'stop' | 'loop' | 'play';
 
@@ -70,16 +71,15 @@ export const LaunchSection = () => {
       }}
     >
       {/* Sticky Content Container */}
-      <div className='sticky top-0 left-0 h-screen flex flex-col justify-center items-center'>
-        <h1 className='text-white text-[10vw] sm:text-[8vw] md:text-[7vw] font-bold text-center'>
-          Lass uns abheben
-        </h1>
-        <p className='text-white text-[6.5vw] sm:text-[5vw] md:text-[4vw] font-medium text-center pt-8 md:pt-16 lg:pt-24'>
-          Das könnte
-        </p>
-        <p className='text-white text-[6.5vw] sm:text-[5vw] md:text-[4vw] font-medium text-center'>
-          dein Projekt sein
-        </p>
+      <div className='sticky top-0 left-0 h-screen flex flex-col justify-center items-center text-center'>
+        <div className='font-orbitron mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <span className='block sm:inline'>LASS UNS ABHEBEN</span>{' '}
+          </h2>
+          <p className='text-white text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 text-center'>
+            Dein Projekt wird es dir danken!
+          </p>
+        </div>
       </div>
 
       {/* Rocket Animation */}

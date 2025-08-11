@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GradientText } from './ui/gradient-text';
+import { HighlightText } from './ui/highlight-text';
 
 export const DynamicMenuSection = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -128,18 +129,18 @@ export const DynamicMenuSection = () => {
 
   const getGradientColor = (index: number) => {
     const colors = [
-      // 7) Smaragd → Rot (starker Farbkonflikt für Aufmerksamkeit)
+      // 1) Smaragd → Rot (starker Farbkonflikt für Aufmerksamkeit)
       'from-[#10b981] to-[#ef4444]',
 
-      // 8) Kaltblau → Warmrot (kräftige Dualität)
+      // 2) Kaltblau → Warmrot (kräftige Dualität)
       'from-[#3b82f6] to-[#f43f5e]',
-      // 4) Türkis → Tiefes Lila (cool/warm Tech-Look)
+      // 3) Türkis → Tiefes Lila (cool/warm Tech-Look)
       'from-[#2dd4bf] to-[#7c3aed]',
 
-      // 5) Helles Cyan → Gelb (freundlich/auffällig)
+      // 4) Helles Cyan → Gelb (freundlich/auffällig)
       'from-[#06b6d4] to-[#fde047]',
 
-      // 6) React-Blau → Neonpink (UI-Highlight)
+      // 5) React-Blau → Neonpink (UI-Highlight)
       'from-[#61dafb] to-[#ec4899]',
     ];
     return colors[index] || colors[0];
@@ -151,12 +152,15 @@ export const DynamicMenuSection = () => {
       <div className='sticky top-0 min-h-screen flex flex-col justify-center'>
         <div className='max-w-7xl mx-auto px-6 w-full'>
           {/* Header */}
-          <div className='font-orbitron text-left mb-20'>
-            <h2 className='font-orbitron mt-5 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl'>
-              KENNST DU DIESE
-              <GradientText className='' text='HERAUSFORDERUNGEN?' />
+          <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+            <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+              <span className='block sm:block'>Kennst du diese</span>{' '}
+              <GradientText
+                className='inline-block sm:inline'
+                text='Herausforderungen?'
+              />
             </h2>
-            <p className='text-xl text-gray-300'>
+            <p className='text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-2xl'>
               Lass uns diese gemeinsam überwältigen!
             </p>
           </div>

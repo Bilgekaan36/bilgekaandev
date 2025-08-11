@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { GradientText } from './ui/gradient-text';
+import { AnimatedCTAButton } from './AnimatedCTAButtons';
 
 export const BlogSection = () => {
   const featuredPost = {
@@ -35,12 +37,12 @@ export const BlogSection = () => {
 
   return (
     <section className='bg-black py-20 px-6'>
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto flex flex-col'>
         {/* Header */}
-        <div className='mb-12'>
-          <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold'>
-            <span className='text-white'>REACT</span>{' '}
-            <span className='text-blue-500 italic'>IM FOKUS</span>
+        <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold leading-none text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <GradientText className='inline-block sm:inline' text='React' />{' '}
+            <span className='block sm:block'>im Fokus</span>
           </h2>
         </div>
 
@@ -84,7 +86,6 @@ export const BlogSection = () => {
               </div>
             </Link>
           </div>
-
           {/* Right Side - Two Posts */}
           <div className='grid gap-6'>
             {posts.map((post, index) => (
@@ -125,14 +126,11 @@ export const BlogSection = () => {
         </div>
 
         {/* View All Button */}
-        <div className='mt-12 text-center'>
+        {/* <div className='mt-10 flex items-center gap-x-6 self-center'>
           <Link href='/blog'>
-            <button className='text-white hover:text-blue-400 font-semibold inline-flex items-center gap-2 transition-colors'>
-              Alle Artikel ansehen
-              <ArrowUpRight className='w-4 h-4' />
-            </button>
+            <AnimatedCTAButton text='Alle Artikel ansehen' variant='glow' />
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

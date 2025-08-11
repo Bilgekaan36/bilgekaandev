@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { HighlightText } from './ui/highlight-text';
+import { GradientText } from './ui/gradient-text';
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -76,24 +78,17 @@ export const AboutSection = () => {
       <div className='relative min-h-screen flex items-center justify-center px-6'>
         <div className='max-w-7xl mx-auto items-center'>
           {/* Title Content */}
-          <div
-            className={`space-y-8 transition-all duration-1000 delay-300 mb-14 ${
-              isVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 -translate-x-10'
-            }`}
-          >
-            <div className='space-y-6 flex flex-col items-center'>
-              <h2 className='text-5xl lg:text-7xl font-bold text-white leading-tight'>
-                BILGEKAAN YILMAZ,
-                <br />
-                <span className='relative inline-block'>
-                  <span className='bg-black text-white px-4 py-2 rounded-lg italic font-medium'>
-                    WEBFLOW
-                  </span>
-                  <span className='ml-4'>EXPERTE</span>
-                </span>
-              </h2>
+          <div className={`space-y-8 mb-14`}>
+            <div className='text-center space-y-16 flex flex-col items-center'>
+              <div className='font-orbitron text-center mb-10 md:mb-16 lg:mb-20'>
+                <h2 className='font-orbitron font-semibold leading-none text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight mt-4 md:mt-5'>
+                  <span className='block sm:block'>Bilgekaan Yilmaz</span>{' '}
+                  <GradientText
+                    className='inline-block sm:inline'
+                    text='React Experte'
+                  />
+                </h2>
+              </div>
 
               <p className='text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl'>
                 Mit dem Herz voller{' '}
@@ -114,13 +109,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Image Content - Image with floating achievements */}
-          <div
-            className={`relative transition-all duration-1000 delay-500 ${
-              isVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 translate-x-10'
-            }`}
-          >
+          <div className={`relative`}>
             <div className='relative w-full mx-auto flex justify-center items-center'>
               {/* Main profile image */}
               <div className='relative z-10 max-w-3xl'>
@@ -171,7 +160,7 @@ export const AboutSection = () => {
           </div>
           <div className='max-w-7xl mx-auto items-center'>
             <div className='pt-18 flex flex-col items-center'>
-              <p className='text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl'>
+              <p className='text-center text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl'>
                 Mit dem Herz voller{' '}
                 <span className='font-semibold text-white'>
                   Leidenschaft für Design & Interaktion

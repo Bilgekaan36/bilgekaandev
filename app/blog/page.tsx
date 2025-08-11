@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { blogPosts } from '@/data/blog';
+import { GradientText } from '@/components/ui/gradient-text';
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('');
-
 
   // Filter posts based on search query
   const filteredPosts = blogPosts.filter(
@@ -32,10 +32,18 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className='pt-32 pb-12 px-6'>
         <div className='max-w-7xl mx-auto'>
-          <h1 className='text-5xl md:text-6xl lg:text-7xl font-bold mb-12'>
-            <span className='text-blue-500 italic'>REACT</span>
-            <span className='text-white'> IM FOKUS</span>
-          </h1>
+          <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
+            <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+              <span className='block sm:block'>Kennst du diese</span>{' '}
+              <GradientText
+                className='inline-block sm:inline'
+                text='Herausforderungen?'
+              />
+            </h2>
+            <p className='text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-2xl'>
+              Lass uns diese gemeinsam überwältigen!
+            </p>
+          </div>
 
           {/* Search Bar */}
           <div className='relative w-full'>

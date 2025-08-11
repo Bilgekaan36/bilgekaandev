@@ -1,4 +1,3 @@
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { ScrollIndicator } from './ScrollIndicator';
 import { GradientText } from './ui/gradient-text';
@@ -12,7 +11,7 @@ import {
 import { ReactBadge } from './ReactBadge';
 import { AvatarGroupComponent } from './AvatarGroup';
 
-export const Hero = () => {
+export const HeroSection = () => {
   return (
     <div className='relative isolate overflow-hidden bg-gray-900'>
       <svg
@@ -84,7 +83,7 @@ export const Hero = () => {
               <MarqueeFade side='right' />
               <MarqueeContent>
                 {new Array(6).fill(null).map((_, index) => (
-                  <MarqueeItem className='h-12 w-12' key={index}>
+                  <MarqueeItem className='h-18 w-18' key={index}>
                     <Image
                       alt={`Placeholder ${index}`}
                       className='overflow-hidden rounded-full'
@@ -98,14 +97,14 @@ export const Hero = () => {
             </Marquee>
           </div>
         </div>
-        <div className='mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:mt-0 lg:mr-0 lg:ml-10 lg:max-w-none lg:flex-none xl:ml-32'>
+        <div className='mx-auto mt-16 flex justify-center max-w-2xl sm:mt-24 lg:mt-0  lg:max-w-none lg:flex-none'>
           <div className='max-w-3xl flex-none sm:max-w-5xl lg:max-w-none'>
             <Image
               alt='Bilgekaan'
-              src='/bilgekaan-hero-main.png'
+              src='/yilmaz.png'
               width={2000}
               height={2000}
-              className='w-150 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10'
+              className='w-125 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10'
             />
           </div>
         </div>

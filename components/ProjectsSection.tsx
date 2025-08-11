@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { PlayCircle } from 'lucide-react';
 import localeIcon from '@/public/loc.svg';
 import goalIcon from '@/public/goal.svg';
+import { GradientText } from './ui/gradient-text';
 
 export const ProjectsSection = () => {
   const projects = [
@@ -78,9 +79,12 @@ export const ProjectsSection = () => {
     <section className='bg-blue-700 py-20 px-6'>
       <div className='max-w-7xl mx-auto'>
         {/* Header */}
-        <h2 className='text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-16 italic'>
-          ERFOLGREICHE <span className='font-black'>PROJEKTE</span>
-        </h2>
+        <div className='font-orbitron text-center mb-10 md:mb-16 lg:mb-20'>
+          <h2 className='font-orbitron font-semibold text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <span className='block sm:inline'>Erfolgreiche</span>{' '}
+            <GradientText className='inline-block sm:inline' text='Projekte' />
+          </h2>
+        </div>
 
         {/* Project Cards */}
         <div className='grid gap-8'>
