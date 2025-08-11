@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { GradientText } from './ui/gradient-text';
-import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import { AnimatedCTAButton } from './custom/AnimatedCTAButtons';
 
 export const BlogSection = () => {
   const featuredPost = {

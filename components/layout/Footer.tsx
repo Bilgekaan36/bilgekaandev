@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowUpRight, Youtube, Linkedin } from 'lucide-react';
-import { GradientText } from './ui/gradient-text';
-import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import { GradientText } from '../ui/gradient-text';
+import { AnimatedCTAButton } from '../custom/AnimatedCTAButtons';
 
 export const Footer = () => {
   return (

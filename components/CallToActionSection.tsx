@@ -1,4 +1,4 @@
-import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import { AnimatedCTAButton } from './custom/AnimatedCTAButtons';
 import { GradientText } from './ui/gradient-text';
 
 export const CallToActionSection = () => {

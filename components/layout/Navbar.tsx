@@ -5,6 +5,7 @@ import { Dialog, DialogPanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AnimatedCTAButton } from '../custom/AnimatedCTAButtons';
 
 const navigation = [
   { name: 'ÜBER MICH', href: '/about' },
@@ -64,7 +65,7 @@ export const Navbar = () => {
         {/* Desktop Login */}
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <Link href='/login' className='text-sm/6 font-semibold text-white'>
-            Log in <span aria-hidden='true'>&rarr;</span>
+            <AnimatedCTAButton text='ERSTGESPRÄCH' variant='default' />
           </Link>
         </div>
       </nav>
@@ -123,7 +124,7 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5'
                 >
-                  Log in
+                  <AnimatedCTAButton text='ERSTGESPRÄCH' variant='default' />
                 </Link>
               </div>
             </div>

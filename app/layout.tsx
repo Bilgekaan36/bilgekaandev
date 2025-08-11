@@ -1,9 +1,9 @@
 'use client';
 import { Inter, Orbitron } from 'next/font/google';
 import './globals.css';
-import { Navbar } from '@/components/Navbar';
+import { Navbar } from '@/components/layout/Navbar';
 import { ParallaxProvider } from 'react-scroll-parallax';
-import { Footer } from '@/components/Footer';
+import { Footer } from '@/components/layout/Footer';
 
 const inter = Inter({
   variable: '--font-inter',

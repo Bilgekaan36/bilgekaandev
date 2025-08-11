@@ -1,15 +1,15 @@
 import Image from 'next/image';
-import { ScrollIndicator } from './ScrollIndicator';
+import { ScrollIndicator } from './custom/ScrollIndicator';
 import { GradientText } from './ui/gradient-text';
-import { AnimatedCTAButton } from './AnimatedCTAButtons';
+import { AnimatedCTAButton } from './custom/AnimatedCTAButtons';
 import {
   Marquee,
   MarqueeContent,
   MarqueeFade,
   MarqueeItem,
 } from './ui/marquee';
-import { ReactBadge } from './ReactBadge';
-import { AvatarGroupComponent } from './AvatarGroup';
+import { ReactBadge } from './custom/ReactBadge';
+import { AvatarGroupComponent } from './custom/AvatarGroup';
 
 export const HeroSection = () => {
   return (
