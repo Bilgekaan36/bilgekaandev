@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { GradientText } from './ui/gradient-text';
-import { AnimatedCTAButton } from './custom/AnimatedCTAButtons';
 
 export const BlogSection = () => {
   const featuredPost = {
@@ -13,7 +12,7 @@ export const BlogSection = () => {
     date: '22. April 2025',
     title:
       'Werden Webdesigner durch KI arbeitslos? – Eine realistische Einschätzung',
-    image: '/blog-featured.jpg', // Replace with actual image
+    image: '/blog-featured.jpg',
     slug: 'webdesigner-ki-zukunft',
   };
 
@@ -22,7 +21,7 @@ export const BlogSection = () => {
       category: 'TUTORIAL',
       date: '22. April 2025',
       title: 'Die Top 5 Webflow Animationen für den Wow-Effekt',
-      image: '/blog1.jpg', // Replace with actual image
+      image: '/blog1.jpg',
       slug: 'webflow-animationen-wow-effekt',
     },
     {
@@ -30,7 +29,7 @@ export const BlogSection = () => {
       date: '22. April 2025',
       title:
         'Mehr qualifizierte Leads mit Webflow: Multistep-Formulare effektiv nutzen',
-      image: '/blog2.jpg', // Replace with actual image
+      image: '/blog2.jpg',
       slug: 'webflow-multistep-formulare',
     },
   ];
@@ -51,7 +50,7 @@ export const BlogSection = () => {
 
         {/* Blog Grid */}
         <div className='grid lg:grid-cols-2 gap-6'>
-          {/* Featured Post - Left Side */}
+          {/* Featured Post */}
           <div className='group cursor-pointer'>
             <Link href={`/blog/${featuredPost.slug}`}>
               <div className='relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden bg-gray-900'>
@@ -62,14 +61,14 @@ export const BlogSection = () => {
                     backgroundImage: `url(${featuredPost.image})`,
                   }}
                 >
-                  {/* Gradient Overlay */}
-                  <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent' />
+                  {/* Gradient Overlay angepasst */}
+                  <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent' />
                 </div>
 
                 {/* Content */}
                 <div className='absolute bottom-0 left-0 right-0 p-8'>
                   <div className='flex items-center gap-3 mb-4'>
-                    <span className='text-blue-500 text-xs font-semibold uppercase tracking-wider bg-blue-500/20 px-3 py-1 rounded-full'>
+                    <span className='text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]'>
                       {featuredPost.category}
                     </span>
                     <span className='text-gray-400 text-sm'>
@@ -81,7 +80,7 @@ export const BlogSection = () => {
                     {featuredPost.title}
                   </h3>
 
-                  <button className='bg-blue-500 text-white px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-blue-600 transition-colors'>
+                  <button className='px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 transition-all bg-gradient-to-r from-[#61dafb] via-[#4cc3a5] to-[#41b883] hover:opacity-90'>
                     ARTIKEL LESEN
                     <ArrowUpRight className='w-4 h-4' />
                   </button>
@@ -89,27 +88,25 @@ export const BlogSection = () => {
               </div>
             </Link>
           </div>
-          {/* Right Side - Two Posts */}
+
+          {/* Right Side - Posts */}
           <div className='grid gap-6'>
             {posts.map((post, index) => (
               <div key={index} className='group cursor-pointer'>
                 <Link href={`/blog/${post.slug}`}>
                   <div className='relative h-[280px] rounded-2xl overflow-hidden bg-gray-900'>
-                    {/* Background Image */}
                     <div
                       className='absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110'
                       style={{
                         backgroundImage: `url(${post.image})`,
                       }}
                     >
-                      {/* Gradient Overlay */}
-                      <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent' />
+                      <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent' />
                     </div>
 
-                    {/* Content */}
                     <div className='absolute bottom-0 left-0 right-0 p-6'>
                       <div className='flex items-center gap-3 mb-3'>
-                        <span className='text-blue-500 text-xs font-semibold uppercase tracking-wider bg-blue-500/20 px-3 py-1 rounded-full'>
+                        <span className='text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]'>
                           {post.category}
                         </span>
                         <span className='text-gray-400 text-xs'>
@@ -127,13 +124,6 @@ export const BlogSection = () => {
             ))}
           </div>
         </div>
-
-        {/* View All Button */}
-        {/* <div className='mt-10 flex items-center gap-x-6 self-center'>
-          <Link href='/blog'>
-            <AnimatedCTAButton text='Alle Artikel ansehen' variant='glow' />
-          </Link>
-        </div> */}
       </div>
     </section>
   );

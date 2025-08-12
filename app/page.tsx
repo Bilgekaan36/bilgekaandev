@@ -10,7 +10,7 @@ import { LaunchSection } from '@/components/LaunchSection';
 import { NewsletterSection } from '@/components/NewsletterSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
-import { TestimonialsSection } from '@/components/TestimonialsSection';
+// import { TestimonialsSection } from '@/components/TestimonialsSection';
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
       <ProcessSection />
       <LaunchSection />
       <ProjectsSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <CallToActionSection />
       <FAQSection />
       <BlogSection />

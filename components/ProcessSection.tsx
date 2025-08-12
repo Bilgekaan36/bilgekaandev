@@ -1,26 +1,36 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Parallax } from 'react-scroll-parallax';
+import React, { useEffect, useState, useRef } from 'react';
 import { GradientText } from './ui/gradient-text';
 
 export const ProcessSection = () => {
-  const [progress, setProgress] = useState(100);
+  const [progress, setProgress] = useState(0);
   const [activeBackground, setActiveBackground] = useState('white');
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  const handleStep = (data: React.SetStateAction<string>) => {
-    setActiveBackground(data);
-  };
+  const handleScroll = () => {
+    if (!sectionRef.current) return;
 
-  const handleProgress = (progressValue: number) => {
-    if (progressValue >= 0.9) {
-      return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // nur berechnen, wenn der Bereich im Viewport sichtbar ist
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      const totalHeight = rect.height - windowHeight;
+      const scrolled = Math.min(
+        Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0),
+        1
+      );
+      setProgress(scrolled);
+    } else {
+      setProgress(0); // außerhalb -> Reset oder 0
     }
-    setProgress(progressValue);
   };
 
   useEffect(() => {
-    handleStep('white');
+    setActiveBackground('white');
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const textData = [
@@ -140,91 +150,72 @@ export const ProcessSection = () => {
 
   return (
     <div
+      ref={sectionRef}
       id='services'
-      className='mx-auto max-w-7xl pt-32 px-3 sm:px-6  lg:px-8 bg-gray-900 transition-colors duration-500 flex flex-col md:flex-row md:gap-3'
+      className='mx-auto max-w-7xl pt-32 px-3 sm:px-6 lg:px-8 bg-gray-900 transition-colors duration-500 flex flex-col md:flex-row md:gap-3'
       style={{ backgroundColor: activeBackground }}
     >
-      {/* Title Section */}
+      {/* Title */}
       <div className='md:sticky top-12 mb-12 h-fit lg:top-24 order-first lg:h-fit w-full md:w-3/6 z-100'>
         <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
-          <h2 className='font-orbitron font-semibold text-gray-400 text-2xl  md:text-3xl tracking-tight mt-4 md:mt-5 leading-tight'>
-            <span className='inline sm:inline'>
-              So löse ich Ihre Engpässe pragmatisch und teamkompatibel mit
-            </span>{' '}
+          <h2 className='font-orbitron font-semibold text-gray-400 text-2xl md:text-3xl tracking-tight mt-4 md:mt-5 leading-tight'>
+            So löse ich Ihre Engpässe pragmatisch und teamkompatibel mit{' '}
             <GradientText
-              className='inline sm:inline'
+              className='inline'
               text='messbarem Impact ab Woche eins'
             />
           </h2>
         </div>
       </div>
 
-      {/* Process Steps */}
-      <Parallax onProgressChange={handleProgress}>
-        <div className='w-full md:w-11/12 order-2 relative'>
-          {/* Progress Line mit Glow-Kugel */}
-          <div
-            className='absolute top-0 left-[6px] rounded-full'
-            style={{
-              width: '6px',
-              height: `${progress * 2300}px`,
-              background:
-                'linear-gradient(180deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
-            }}
-          >
-            {/* <div
-              className='absolute -left-[9px] w-6 h-6 rounded-full animate-pulse'
+      {/* Steps */}
+      <div className='w-full md:w-11/12 order-2 relative'>
+        {/* Progress Line */}
+        <div
+          className='absolute top-0 left-[6px] rounded-full'
+          style={{
+            width: '6px',
+            height: `${progress * 2200}px`,
+            background:
+              'linear-gradient(180deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
+          }}
+        />
+        {steps.map((step, index) => (
+          <div key={index} className='relative flex mb-32 last:mb-0'>
+            <div
+              className='absolute -left-5 lg:-left-5 top-0 w-16 lg:w-24 text-center font-black text-3xl lg:text-5xl transition-colors duration-300 flex items-center justify-center rounded-md shadow-md'
               style={{
-                top: `${progress * 2000 - 12}px`,
-                background: 'radial-gradient(circle, #61dafb 0%, #41b883 70%)',
-                boxShadow:
-                  '0 0 12px rgba(97, 218, 251, 0.8), 0 0 24px rgba(65, 184, 131, 0.6)',
+                backgroundColor: activeBackground,
+                color: activeBackground === '#1e1f26' ? 'white' : '#1e1f26',
               }}
-            ></div> */}
-          </div>
-
-          {/* Steps */}
-          {steps.map((step, index) => (
-            <div key={index} className='relative flex mb-32 last:mb-0'>
-              {/* Step Number */}
-              <div
-                className='absolute -left-5 lg:-left-5 top-0 w-16 lg:w-24 text-center font-black text-3xl lg:text-5xl transition-colors duration-300 flex items-center justify-center rounded-md shadow-md'
+            >
+              {step.number}
+            </div>
+            <div className='w-full pl-12 lg:pl-20 z-10'>
+              <h3
+                className='text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent'
                 style={{
-                  backgroundColor: activeBackground,
-                  color: activeBackground === '#1e1f26' ? 'white' : '#1e1f26',
+                  backgroundImage:
+                    'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
                 }}
               >
-                {step.number}
-              </div>
-
-              {/* Step Content */}
-              <div className='w-full pl-12 lg:pl-20 z-10'>
-                <h3
-                  className='text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent'
-                  style={{
-                    backgroundImage:
-                      'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
-                  }}
+                {step.title}
+              </h3>
+              <p className='text-gray-300 text-lg lg:text-xl font-medium mb-6 leading-relaxed'>
+                {step.content}
+              </p>
+              {step.subtitles.map((subtitle) => (
+                <p
+                  key={subtitle.textId}
+                  className='text-lg lg:text-xl font-medium mb-4 flex items-start text-gray-500'
                 >
-                  {step.title}
-                </h3>
-                <p className='text-gray-300 text-lg lg:text-xl font-medium mb-6 leading-relaxed'>
-                  {step.content}
+                  <span className='mr-2 text-[#61dafb]'>•</span> {subtitle.text}
                 </p>
-                {step.subtitles.map((subtitle) => (
-                  <p
-                    key={subtitle.textId}
-                    className='text-lg lg:text-xl font-medium mb-4 flex items-start text-gray-500'
-                  >
-                    <span className='mr-2 text-[#61dafb]'>•</span>{' '}
-                    {subtitle.text}
-                  </p>
-                ))}
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </Parallax>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

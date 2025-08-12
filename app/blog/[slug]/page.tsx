@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Clock, User } from 'lucide-react';
-import { BlogSection, getCategoryColor, getPostBySlug } from '@/data/blog';
+import { BlogSection, getPostBySlug } from '@/data/blog';
 
 export default function BlogDetailPage() {
   const params = useParams<{ slug: string }>();
@@ -13,10 +13,8 @@ export default function BlogDetailPage() {
 
   const post = useMemo(() => (slug ? getPostBySlug(slug) : undefined), [slug]);
 
-  // Always call hooks unconditionally
   const [activeSection, setActiveSection] = useState('');
 
-  // Table of Contents dynamisch aus Sections
   const tocItems = useMemo(
     () => post?.sections?.map((s) => ({ id: s.id, title: s.title })) ?? [],
     [post]
@@ -29,9 +27,7 @@ export default function BlogDetailPage() {
         id: item.id,
         element: document.getElementById(item.id),
       }));
-
       const scrollPosition = window.scrollY + 100;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section.element && section.element.offsetTop <= scrollPosition) {
@@ -40,16 +36,14 @@ export default function BlogDetailPage() {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [post, tocItems]);
 
-  // Fallback bei nicht gefundenem Post
   if (!post) {
     return (
-      <div className='min-h-screen bg-black text-white'>
+      <div className='min-h-screen bg-gray-900 text-white'>
         <div className='max-w-3xl mx-auto px-6 py-24'>
           <h1 className='text-3xl font-bold mb-4'>Beitrag nicht gefunden</h1>
           <p className='text-gray-400 mb-8'>
@@ -57,7 +51,7 @@ export default function BlogDetailPage() {
           </p>
           <Link
             href='/blog'
-            className='inline-flex items-center gap-2 text-gray-300 hover:text-white'
+            className='inline-flex items-center gap-2 text-gray-300 hover:text-[#4cc3a5]'
           >
             <ArrowLeft className='w-4 h-4' />
             Zurück zum Blog
@@ -73,15 +67,15 @@ export default function BlogDetailPage() {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
 
-  // Kategorie-Badge Farbe
-  const categoryBadge = getCategoryColor(post.category);
+  // Kategorie-Badge in deiner Palette
+  const categoryBadge =
+    'bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]';
 
-  // Hilfsrenderer für Content mit einfachen Bullet-Points ("• ")
+  // Render-Helfer (Bullet/Paragraph)
   const renderSectionContent = (section: BlogSection) => {
     const lines = section.content.split('\n').map((l) => l.trim());
     const hasBullets = lines.some((l) => l.startsWith('•'));
@@ -97,11 +91,8 @@ export default function BlogDetailPage() {
     const paragraphs: string[] = [];
     const bullets: string[] = [];
     lines.forEach((l) => {
-      if (l.startsWith('•')) {
-        bullets.push(l.replace(/^•\s?/, ''));
-      } else if (l.length) {
-        paragraphs.push(l);
-      }
+      if (l.startsWith('•')) bullets.push(l.replace(/^•\s?/, ''));
+      else if (l.length) paragraphs.push(l);
     });
 
     return (
@@ -123,14 +114,15 @@ export default function BlogDetailPage() {
   };
 
   return (
-    <div className='min-h-screen bg-black'>
+    <div className='min-h-screen bg-gray-900'>
       {/* Hero Section */}
       <section className='relative h-[60vh] min-h-[500px] w-full'>
         <div
           className='absolute inset-0 bg-cover bg-center'
           style={{ backgroundImage: `url(${post.featuredImage})` }}
         >
-          <div className='absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30' />
+          {/* dunkleres Overlay für Lesbarkeit */}
+          <div className='absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/70 to-gray-900/30' />
         </div>
 
         {/* Hero Content */}
@@ -142,7 +134,7 @@ export default function BlogDetailPage() {
               >
                 {post.category}
               </span>
-              <span className='text-gray-400 text-sm'>{post.date}</span>
+              <span className='text-gray-300 text-sm'>{post.date}</span>
             </div>
 
             <h1 className='text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mb-6'>
@@ -161,8 +153,8 @@ export default function BlogDetailPage() {
                     className='w-10 h-10 rounded-full object-cover'
                   />
                 ) : (
-                  <div className='w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center'>
-                    <User className='w-5 h-5' />
+                  <div className='w-10 h-10 bg-white/10 rounded-full flex items-center justify-center'>
+                    <User className='w-5 h-5 text-white/80' />
                   </div>
                 )}
                 <div>
@@ -173,7 +165,7 @@ export default function BlogDetailPage() {
                 </div>
               </div>
               <div className='flex items-center gap-1'>
-                <Clock className='w-4 h-4' />
+                <Clock className='w-4 h-4 text-white/80' />
                 <span className='text-sm'>{post.readTime} Lesezeit</span>
               </div>
             </div>
@@ -184,43 +176,54 @@ export default function BlogDetailPage() {
       {/* Main Content */}
       <section className='max-w-7xl mx-auto px-6 py-12'>
         <div className='grid lg:grid-cols-[300px_1fr] gap-12'>
-          {/* Left Sidebar - Table of Contents */}
+          {/* Left Sidebar - TOC */}
           <aside className='hidden lg:block'>
             <div className='sticky top-24'>
               <h3 className='text-white font-bold text-lg mb-6'>
                 Inhaltsverzeichnis
               </h3>
               <nav className='space-y-3'>
-                {tocItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left text-sm transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'text-blue-500 font-medium pl-4 border-l-2 border-blue-500'
-                        : 'text-gray-400 hover:text-white pl-4 border-l-2 border-gray-800'
-                    }`}
-                  >
-                    {item.title}
-                  </button>
-                ))}
+                {tocItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`relative block w-full text-left text-sm transition-colors duration-300 pl-4`}
+                      style={
+                        isActive
+                          ? {
+                              color: '#4cc3a5',
+                              borderLeftWidth: 2,
+                              borderImage:
+                                'linear-gradient(180deg,#61dafb,#4cc3a5,#41b883) 1',
+                              borderLeftStyle: 'solid',
+                            }
+                          : {
+                              color: '#9ca3af',
+                              borderLeft: '2px solid #1f2937',
+                            }
+                      }
+                    >
+                      {item.title}
+                    </button>
+                  );
+                })}
               </nav>
             </div>
           </aside>
 
           {/* Right Content - Article */}
           <article className='prose prose-invert prose-lg max-w-none'>
-            {/* Optional Einleitung aus excerpt */}
             {post.excerpt && (
               <div className='text-gray-300 leading-relaxed mb-12'>
                 <p className='text-xl leading-relaxed'>{post.excerpt}</p>
               </div>
             )}
 
-            {/* Sections */}
             {post.sections.map((section) => (
               <section id={section.id} className='mb-16' key={section.id}>
-                <h2 className='text-3xl font-bold text-white mb-6'>
+                <h2 className='text-3xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#61dafb] via-[#4cc3a5] to-[#41b883]'>
                   {section.title}
                 </h2>
 
@@ -247,7 +250,7 @@ export default function BlogDetailPage() {
       <div className='max-w-7xl mx-auto px-6 py-12'>
         <Link
           href='/blog'
-          className='text-gray-400 hover:text-white inline-flex items-center gap-2 transition-colors'
+          className='inline-flex items-center gap-2 text-gray-300 hover:text-[#4cc3a5] transition-colors'
         >
           <ArrowLeft className='w-4 h-4' />
           Zurück zum Blog
