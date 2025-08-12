@@ -1,38 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { GradientText } from './ui/gradient-text';
+import { blogPosts, getFeaturedPosts } from '@/data/blog';
+
+// Optional: neue Kategorie-Farben im Brand-Gradient
+const getCategoryBadge = (category: string) => {
+  // Wenn du harte Farben je Kategorie willst, nutze getLegacyCategoryColor(category)
+  // Hier: einheitlicher Brand-Gradient
+  return 'bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]';
+};
 
 export const BlogSection = () => {
-  const featuredPost = {
-    category: 'ALLGEMEIN',
-    date: '22. April 2025',
-    title:
-      'Werden Webdesigner durch KI arbeitslos? – Eine realistische Einschätzung',
-    image: '/blog-featured.jpg',
-    slug: 'webdesigner-ki-zukunft',
-  };
+  // Featured: nimm den ersten "featured" Post, sonst den ersten Post als Fallback
+  const featured = useMemo(() => {
+    const feat = getFeaturedPosts();
+    return feat.length > 0 ? feat[0] : blogPosts[0];
+  }, []);
 
-  const posts = [
-    {
-      category: 'TUTORIAL',
-      date: '22. April 2025',
-      title: 'Die Top 5 Webflow Animationen für den Wow-Effekt',
-      image: '/blog1.jpg',
-      slug: 'webflow-animationen-wow-effekt',
-    },
-    {
-      category: 'TUTORIAL',
-      date: '22. April 2025',
-      title:
-        'Mehr qualifizierte Leads mit Webflow: Multistep-Formulare effektiv nutzen',
-      image: '/blog2.jpg',
-      slug: 'webflow-multistep-formulare',
-    },
-  ];
+  // Neueste Posts rechts: nimm die ersten 2, aber schließe den Featured aus
+  const rightPosts = useMemo(() => {
+    if (!featured) return [];
+    return blogPosts.filter((p) => p.id !== featured.id).slice(0, 2);
+  }, [featured]);
+
+  if (!featured) return null;
 
   return (
     <section className='bg-gray-900 py-20 px-6'>
@@ -43,8 +38,8 @@ export const BlogSection = () => {
             <GradientText
               className='inline-block sm:inline'
               text='Insights & Trends'
-            />
-            <span className='block sm:block'> aus der Webentwicklung</span>
+            />{' '}
+            <span className='block sm:block'>aus der Webentwicklung</span>
           </h2>
         </div>
 
@@ -52,33 +47,40 @@ export const BlogSection = () => {
         <div className='grid lg:grid-cols-2 gap-6'>
           {/* Featured Post */}
           <div className='group cursor-pointer'>
-            <Link href={`/blog/${featuredPost.slug}`}>
+            <Link href={`/blog/${featured.slug}`}>
               <div className='relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden bg-gray-900'>
                 {/* Background Image */}
                 <div
                   className='absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110'
-                  style={{
-                    backgroundImage: `url(${featuredPost.image})`,
-                  }}
+                  style={{ backgroundImage: `url(${featured.featuredImage})` }}
                 >
-                  {/* Gradient Overlay angepasst */}
+                  {/* Gradient Overlay */}
                   <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent' />
                 </div>
 
                 {/* Content */}
                 <div className='absolute bottom-0 left-0 right-0 p-8'>
                   <div className='flex items-center gap-3 mb-4'>
-                    <span className='text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]'>
-                      {featuredPost.category}
+                    <span
+                      className={`text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full ${getCategoryBadge(
+                        featured.category
+                      )}`}
+                    >
+                      {featured.category}
                     </span>
                     <span className='text-gray-400 text-sm'>
-                      {featuredPost.date}
+                      {featured.date}
                     </span>
                   </div>
 
-                  <h3 className='text-white text-2xl lg:text-3xl font-bold leading-tight mb-6'>
-                    {featuredPost.title}
+                  <h3 className='text-white text-2xl lg:text-3xl font-bold leading-tight mb-3'>
+                    {featured.title}
                   </h3>
+                  {featured.excerpt && (
+                    <p className='text-gray-300 text-sm lg:text-base mb-6 line-clamp-3'>
+                      {featured.excerpt}
+                    </p>
+                  )}
 
                   <button className='px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 transition-all bg-gradient-to-r from-[#61dafb] via-[#4cc3a5] to-[#41b883] hover:opacity-90'>
                     ARTIKEL LESEN
@@ -89,24 +91,28 @@ export const BlogSection = () => {
             </Link>
           </div>
 
-          {/* Right Side - Posts */}
+          {/* Right Side - Two Posts */}
           <div className='grid gap-6'>
-            {posts.map((post, index) => (
-              <div key={index} className='group cursor-pointer'>
+            {rightPosts.map((post) => (
+              <div key={post.id} className='group cursor-pointer'>
                 <Link href={`/blog/${post.slug}`}>
                   <div className='relative h-[280px] rounded-2xl overflow-hidden bg-gray-900'>
+                    {/* Background Image */}
                     <div
                       className='absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110'
-                      style={{
-                        backgroundImage: `url(${post.image})`,
-                      }}
+                      style={{ backgroundImage: `url(${post.featuredImage})` }}
                     >
                       <div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent' />
                     </div>
 
+                    {/* Content */}
                     <div className='absolute bottom-0 left-0 right-0 p-6'>
                       <div className='flex items-center gap-3 mb-3'>
-                        <span className='text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-gradient-to-r from-[#61dafb]/30 via-[#4cc3a5]/30 to-[#41b883]/30 text-[#61dafb]'>
+                        <span
+                          className={`text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full ${getCategoryBadge(
+                            post.category
+                          )}`}
+                        >
                           {post.category}
                         </span>
                         <span className='text-gray-400 text-xs'>

@@ -13,7 +13,7 @@ export const ProjectsSection = () => {
       tag: 'SaaS / Cloud',
       company: 'Confidential Client',
       website: null,
-      image: '/project-energy.jpg',
+      image: null,
       initialSituation: {
         title: 'Ausgangssituation',
         points: [
@@ -53,7 +53,7 @@ export const ProjectsSection = () => {
       tag: 'AI / Digital Menu',
       company: 'Eiscafé Remi',
       website: null,
-      image: '/project-qrmenu.jpg',
+      image: null,
       initialSituation: {
         title: 'Ausgangssituation',
         points: [
@@ -111,15 +111,26 @@ export const ProjectsSection = () => {
             >
               <div className='grid md:grid-cols-2'>
                 {/* Left Side - Image */}
+                {/* Left Side - Image */}
                 <div className='relative bg-gray-900'>
-                  <div
-                    className='absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-300'
-                    style={{ backgroundImage: `url(${project.image})` }}
-                  />
+                  {project.image ? (
+                    <div
+                      className='absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-300'
+                      style={{ backgroundImage: `url(${project.image})` }}
+                    />
+                  ) : (
+                    <div className='absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800'>
+                      <span className='text-white/80 text-2xl font-orbitron tracking-widest border border-white/20 px-6 py-3 rounded-lg shadow-lg backdrop-blur-sm'>
+                        Coming Soon
+                      </span>
+                    </div>
+                  )}
+
                   {/* Tag oben links */}
                   <span className='absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-xs uppercase tracking-wide text-white px-3 py-1 rounded-full border border-white/20'>
                     {project.tag}
                   </span>
+
                   <div className='relative z-10 p-8 md:p-12 h-full grid grid-rows-[1fr_auto] min-h-[400px]'>
                     <div />
                     <div>

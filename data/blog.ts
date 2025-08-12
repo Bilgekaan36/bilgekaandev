@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
       'Die Diskussion rund um Künstliche Intelligenz (KI) und ihre Auswirkungen auf den Arbeitsmarkt ist in vollem Gange – besonders in kreativen und digitalen Berufen.',
     featuredImage: '/blog/ai-webdesign-hero.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -106,7 +106,7 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
       'Entdecke die kraftvollsten Animationen in Webflow, die deine Website zum Leben erwecken und Besucher begeistern.',
     featuredImage: '/blog/webflow-animations.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -156,7 +156,7 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
       'Wie Sie mit mehrstufigen Formularen in Webflow die Conversion-Rate steigern und qualifiziertere Leads generieren.',
     featuredImage: '/blog/multistep-forms.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -199,7 +199,7 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
       'Ein ehrlicher Erfahrungsbericht über das Leben und Arbeiten als Webdesigner in Medellín.',
     featuredImage: '/blog/medellin.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -242,7 +242,7 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
       'Bewährte Methoden und neue Ansätze, um als Webdesigner konstant neue Aufträge zu generieren.',
     featuredImage: '/blog/kunden-gewinnen.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -285,7 +285,7 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
       'Ein detaillierter Einblick in meinen bewährten Workflow vom ersten Kundengespräch bis zum Launch.',
     featuredImage: '/blog/design-process.jpg',
     author: {
-      name: 'Sönke Sproll',
+      name: 'Bilgekaan Yilmaz',
       role: 'Webflow Experte',
       avatar: '/avatars/soenke.jpg',
     },
@@ -322,11 +322,15 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
 
 // Helper Functions
 export const getFeaturedPosts = () => blogPosts.filter((post) => post.featured);
+
 export const getLatestPosts = (count: number = 3) => blogPosts.slice(0, count);
+
 export const getPostBySlug = (slug: string) =>
   blogPosts.find((post) => post.slug === slug);
+
 export const getPostsByCategory = (category: string) =>
   blogPosts.filter((post) => post.category === category);
+
 export const getCategoryColor = (category: string) => {
   switch (category) {
     case 'TUTORIAL':
