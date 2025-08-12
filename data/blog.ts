@@ -28,71 +28,91 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    slug: 'webdesigner-ki-zukunft',
-    category: 'ALLGEMEIN',
-    date: '22. April 2025',
+    slug: 'react-server-components-nextjs-15-best-practices',
+    category: 'TUTORIAL',
+    date: '12. August 2025',
     title:
-      'Werden Webdesigner durch KI arbeitslos? – Eine realistische Einschätzung',
+      'React Server Components in Next.js 15: Production-Patterns, Caching & Fallstricke',
     excerpt:
-      'Die Diskussion rund um Künstliche Intelligenz (KI) und ihre Auswirkungen auf den Arbeitsmarkt ist in vollem Gange – besonders in kreativen und digitalen Berufen.',
-    featuredImage: '/blog/ai-webdesign-hero.jpg',
+      'Ein praxisnaher Leitfaden für RSC in Next.js 15: Mental Model, Suspense/Streaming, Caching-Strategien, Server Actions, Boundary-Design, DX- und Performance-Fallen – inklusive checkbarer Best Practices.',
+    featuredImage: '/blog/1_blog/hero.png',
     author: {
       name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
+      role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',
+      avatar: '/avatars/bilgekaan.jpg',
     },
-    readTime: '8 Min',
+    readTime: '14 Min',
     featured: true,
     sections: [
       {
-        id: 'aufstieg',
-        title: 'Der Aufstieg der KI im Webdesign',
-        content: `Mit der rasanten Entwicklung von KI-Tools wie ChatGPT, Midjourney, DALL·E und vor allem spezialisierten „Page Buildern", die per Texteingabe (Prompt) ganze Websites generieren können, wird eines klar: Die Künstliche Intelligenz ist im Webdesign angekommen. Tools wie Webflow, Relume, Squarespace und Wix integrieren mittlerweile KI-Funktionen, die sowohl Design als auch Textgenerierung automatisieren.
-
-Das klingt im ersten Moment bedrohlich – besonders für Webdesigner, die befürchten, durch solche Tools ersetzt zu werden. Doch diesen ersten Eindruck täuscht.`,
-        image: '/blog/ai-tools.jpg',
-      },
-      {
-        id: 'was-kann',
-        title: 'Was KI kann – und was nicht',
-        content: `KI ist aktuell in der Lage, standardisierte Layouts, einfache Landingpages und sogar ganze Webseiten zu erstellen. Besonders durch sogenannte „Prompt Builder" lassen sich Websites in wenigen Minuten generieren. Was dabei auffällt: Die Ergebnisse erinnern stark an Templates. Sie sind funktional, aber oft generisch und austauschbar.
-
-• Standardisierte Layouts und Templates
-• Einfache Farbschemata und Typografie
-• Basis-Funktionalitäten und Formulare
-• Content-Generierung für allgemeine Themen
-
-Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickeln, die perfekt auf die individuellen Bedürfnisse eines Unternehmens zugeschnitten sind.`,
-      },
-      {
-        id: 'warum',
-        title: 'Warum individuelle Webdesigner weiterhin gefragt bleiben',
+        id: 'intro',
+        title: 'Warum React Server Components (RSC) – und wann nicht?',
         content:
-          'Der entscheidende Unterschied zwischen KI-generierten Websites und professionellem Webdesign liegt in der Individualität und strategischen Ausrichtung. Ein erfahrener Webdesigner versteht nicht nur die technischen Aspekte, sondern auch die Geschäftsziele, Zielgruppen und Markenwerte seiner Kunden.',
+          'RSC verlagern UI-Bereiche auf den Server: weniger Client-JS, bessere TTFB/TTI, vereinfachtes Data-Fetching und natürliches Streaming über Suspense.\n\n• Sinnvoll: datenlastige Views, Listen/Detailseiten, Dashboard-Widgets, Marketing-Pages, Suchergebnisse.\n• Weniger sinnvoll: hochinteraktive, zustandsreiche Widgets (Drag&Drop, Canvas, komplexe Editors) → dort gezielt Client Components kapseln.\n• Ziel: möglichst viel Server, exakt so viel Client wie nötig (Boundary-Design).',
+        image: '/blog/1_blog/rsc-when-when-not.png',
       },
       {
-        id: 'rolle',
-        title: 'Die neue Rolle von KI: Assistent statt Ersatz',
+        id: 'mental-model',
+        title: 'Mental Model: Server-Tree vs. Client-Islands',
         content:
-          'Statt Webdesigner zu ersetzen, wird KI zunehmend zu einem wertvollen Werkzeug. Professionelle Designer nutzen KI-Tools bereits heute, um ihre Arbeitsprozesse zu optimieren und kreativer zu werden.',
+          'RSC rendert Komponenten auf dem Server; nur dort hat man direkten DB/FS/Secret-Zugriff. Client Components sind „Islands“, die interaktive UI kapseln.\n\n• Server: Daten holen, HTML streamen, kein Browser-JS-Bundle für diese Teile.\n• Client: „use client“ an der Komponentenspitze; nur dort Hooks wie useState/useEffect und Browser APIs.\n• Boundary-Regel: Server → Client darf Props (serialisierbar) übergeben; Client → Server nur via Server Actions.',
+        image: '/blog/1_blog/rsc-mental-model.png',
       },
       {
-        id: 'gefaehrdet',
-        title: 'Wer wirklich gefährdet ist',
+        id: 'data-fetching-caching',
+        title: 'Data-Fetching & Caching in Next.js 15',
         content:
-          'Die ehrliche Antwort: Designer, die ausschließlich Templates anpassen oder einfache Standardlösungen anbieten, könnten tatsächlich unter Druck geraten. Wer jedoch komplexe, strategische und kreative Lösungen entwickelt, wird auch in Zukunft gefragt sein.',
+          'Next.js kombiniert RSC mit Request-/Route-bezogenem Cache. Die wichtigsten Hebel:\n\n• fetch-Caching: implizit „force-cache“ (build-time) oder konfiguriert mit { cache: "no-store" } bzw. { next: { revalidate: 60 } }.\n• Revalidation: „revalidate“ pro Request oder Route; zeit-/event-basiert (Tag-basierte Invalidierung für präzises Busting).\n• Tagging: Antworten mit Tags versehen (z. B. "posts", "user:42") und gezielt invalidieren (on-write Busting nach Mutationen).\n• DB-Zugriff direkt im Server Component/Server Action – kein API-Boilerplate nötig.\n• Anti-Pattern: blind „no-store“ überall → verschenkt RSC-Vorteile.',
+        image: '/blog/1_blog/rsc-caching.png',
       },
       {
-        id: 'zukunft',
-        title: 'Die Zukunft gestalten: Den Experten Fazit',
+        id: 'suspense-streaming',
+        title: 'Suspense & Streaming richtig einsetzen',
         content:
-          'Die Zukunft gehört denjenigen, die KI als Werkzeug verstehen und nutzen, ohne ihre menschliche Kreativität und Expertise zu vernachlässigen.',
+          'Suspense ermöglicht partielle, frühe Auslieferung; „Wasserfall“ vermeiden, kritische Teile zuerst streamen.\n\n• Above-the-fold priorisieren: kritische Server Components ohne tiefe Abhängigkeiten rendern.\n• Progressive Hydration: Client-Islands nachrangig laden.\n• Pattern: Layout (Server) → Slot (Suspense) → Fallback (Skeleton) → Child (Server/Client) – so werden teure Subtrees parallelisiert.\n• Anti-Pattern: globaler Suspense um die ganze Seite → verliert Granularität.',
+        image: '/blog/1_blog/rsc-suspense.png',
       },
       {
-        id: 'grund',
-        title: 'Kein Grund zur Panik – im Gegenteil',
+        id: 'server-actions',
+        title: 'Server Actions: Mutationen ohne API-Boilerplate',
         content:
-          'KI wird Webdesigner nicht arbeitslos machen – sie wird die Branche transformieren. Diejenigen, die sich anpassen und KI als Werkzeug nutzen, werden erfolgreicher denn je sein.',
+          'Server Actions erlauben Form- und Event-basierte Mutationen direkt auf dem Server – ohne manuelle REST/GraphQL-Runden.\n\n• Ideal für: Create/Update/Delete, Auth-Flows, Upload-Pipelines.\n• Validation: Zod/Yup serverseitig; Rückgabe strukturierter Fehler an Client Components.\n• Revalidation: nach erfolgreicher Mutation gezielte Cache-Invalidierung per Tags.\n• Security: Actions leben im Server-Trust-Boundary; Eingaben trotzdem strikt validieren und Fehler pfleglich behandeln.',
+        image: '/blog/1_blog/rsc-actions.png',
+      },
+      {
+        id: 'boundaries',
+        title: 'Klare Boundaries: „use client“ nur dort, wo nötig',
+        content:
+          'Ein häufiger Fehler ist zu breite Client-Grenzen, die unnötig viel JS bundlen.\n\n• Splitten: Container (Server) + kleine, fokussierte Client-Widgets (Form, Dropdown, DatePicker).\n• 3rd-Party-Libs: UI-Libs mit DOM-Zugriff in Client-Islands kapseln; Datenbereitstellung im Server Container.\n• Props-Design: nur Serialisierbares übergeben (keine Funktionen/Instanzen).',
+        image: '/blog/1_blog/rsc-boundaries.png',
+      },
+      {
+        id: 'performance',
+        title: 'Performance-Checkliste für RSC-Apps',
+        content:
+          'Praktische Punkte, die in Audits sofort Wirkung zeigen:\n\n• Cache-Budget: pro Route klare Caching/Tagging-Strategie definieren.\n• Over-fetching minimieren: Aggregation im Server (Join/SELECT only needed fields), nicht im Client.\n• Bilder: Server-rendern + responsive Größen; Client-Lazy-Load nur für wirklich „below the fold“.\n• Bundle-Watch: Client-Islands klein halten; heavy deps in Server bewegen.\n• Streaming-Cuts: mehrere Suspense-Boundaries statt einer großen.\n• Telemetrie: Server/Client getrennt messen (TTFB, LCP, Hydration-Time).',
+        image: '/blog/1_blog/rsc-perf.png',
+      },
+      {
+        id: 'migration',
+        title: 'Migration: Pages Router / CSR → App Router mit RSC',
+        content:
+          'Schrittweise vorgehen, Risiko klein halten.\n\n• Start klein: neue Route im App Router, nicht Big-Bang.\n• Container zuerst: Datenbeschaffung in Server Components verschieben, UI unverändert lassen.\n• Widget-Kapselung: interaktive Teile bewusst als Client-Islands.\n• Nach Mutationen: Tag-basierte Revalidierung etablieren; „no-store“ entfernen.\n• Messbar machen: Vor/Nach-KPIs (TTFB/LCP/JS-Payload) tracken.',
+        image: '/blog/1_blog/rsc-migration.png',
+      },
+      {
+        id: 'pitfalls',
+        title: 'Häufige Fallstricke in Projekten',
+        content:
+          'Erfahrungen aus realen Codebases:\n\n• „use client“ an zu hohen Stellen → unnötig großes Client-Bundle.\n• Kein Tag-System → Revalidation wird chaotisch/teuer.\n• Fetch im Client statt Server → doppelte Logik, schlechtere TTFB.\n• Monolithische Suspense → Streams kommen zu spät.\n• Unklare Fehlerpfade in Server Actions → UI ohne Feedback.\n• Geheimnisse im Client-Code → Sicherheitsrisiko.',
+        image: '/blog/1_blog/rsc-pitfalls.png',
+      },
+      {
+        id: 'fazit',
+        title: 'Fazit & Empfehlung',
+        content:
+          'RSC sind kein Selbstzweck. Richtig eingesetzt reduzieren sie Client-JS, vereinfachen Data-Flows und verbessern wahrgenommene Performance. Der Schlüssel ist sauberes Boundary-Design, explizites Caching/Revalidation und gezielter Einsatz von Server Actions. Starte mit einer Route, messe Effekte und rolle Patterns schrittweise aus.',
+        image: '/blog/1_blog/rsc-conclusion.jpg',
       },
     ],
   },
@@ -186,135 +206,6 @@ Was KI jedoch (noch) nicht kann: Komplexe, maßgeschneiderte Lösungen entwickel
         title: 'Best Practices',
         content:
           'Von Progress-Bars bis zur optimalen Anzahl von Feldern pro Schritt - diese Tipps maximieren Ihre Conversions.',
-      },
-    ],
-  },
-  {
-    id: 4,
-    slug: 'medellin-digitaler-nomade',
-    category: 'ALLGEMEIN',
-    date: '17. April 2025',
-    title: 'Lohnt sich Medellín, Kolumbien als digitaler Nomade?',
-    excerpt:
-      'Ein ehrlicher Erfahrungsbericht über das Leben und Arbeiten als Webdesigner in Medellín.',
-    featuredImage: '/blog/medellin.jpg',
-    author: {
-      name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
-    },
-    readTime: '12 Min',
-    featured: false,
-    sections: [
-      {
-        id: 'erste-eindruecke',
-        title: 'Erste Eindrücke',
-        content:
-          'Medellín hat sich in den letzten Jahren zu einem Hotspot für digitale Nomaden entwickelt. Die Stadt des ewigen Frühlings lockt mit perfektem Klima und niedrigen Lebenshaltungskosten.',
-      },
-      {
-        id: 'arbeiten',
-        title: 'Arbeiten in Medellín',
-        content:
-          'Co-Working Spaces, Cafés und eine wachsende Tech-Community machen Medellín zum idealen Arbeitsort für Freelancer und Remote Worker.',
-      },
-      {
-        id: 'leben',
-        title: 'Leben und Freizeit',
-        content:
-          'Von Salsa-Kursen bis zu Wochenendtrips in die Kaffeezone - Medellín bietet unzählige Möglichkeiten für die Work-Life-Balance.',
-      },
-      {
-        id: 'fazit',
-        title: 'Mein Fazit nach 6 Monaten',
-        content:
-          'Für wen sich Medellín lohnt und was man unbedingt beachten sollte.',
-      },
-    ],
-  },
-  {
-    id: 5,
-    slug: 'kunden-gewinnen-webdesigner',
-    category: 'ALLGEMEIN',
-    date: '13. September 2024',
-    title: 'Kunden gewinnen als Webdesigner 2024: 10 Strategien',
-    excerpt:
-      'Bewährte Methoden und neue Ansätze, um als Webdesigner konstant neue Aufträge zu generieren.',
-    featuredImage: '/blog/kunden-gewinnen.jpg',
-    author: {
-      name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
-    },
-    readTime: '15 Min',
-    featured: false,
-    sections: [
-      {
-        id: 'portfolio',
-        title: 'Ein überzeugendes Portfolio',
-        content:
-          'Ihr Portfolio ist Ihre wichtigste Visitenkarte. So präsentieren Sie Ihre Arbeiten optimal.',
-      },
-      {
-        id: 'netzwerk',
-        title: 'Netzwerken richtig gemacht',
-        content:
-          'Online und offline Kontakte knüpfen, die zu Aufträgen führen.',
-      },
-      {
-        id: 'content',
-        title: 'Content Marketing',
-        content:
-          'Mit wertvollen Inhalten Expertise zeigen und Kunden anziehen.',
-      },
-      {
-        id: 'preise',
-        title: 'Preisgestaltung',
-        content:
-          'Wie Sie Ihre Preise selbstbewusst kommunizieren und durchsetzen.',
-      },
-    ],
-  },
-  {
-    id: 6,
-    slug: 'webdesign-prozess-2024',
-    category: 'ALLGEMEIN',
-    date: '09. September 2024',
-    title: 'Mein Webdesign Prozess 2024 (Figma + Webflow)',
-    excerpt:
-      'Ein detaillierter Einblick in meinen bewährten Workflow vom ersten Kundengespräch bis zum Launch.',
-    featuredImage: '/blog/design-process.jpg',
-    author: {
-      name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
-    },
-    readTime: '10 Min',
-    featured: false,
-    sections: [
-      {
-        id: 'discovery',
-        title: 'Discovery Phase',
-        content:
-          'Alles beginnt mit dem Verständnis der Kundenbedürfnisse und Geschäftsziele.',
-      },
-      {
-        id: 'design',
-        title: 'Design in Figma',
-        content:
-          'Von Wireframes zu High-Fidelity Designs - mein strukturierter Designprozess.',
-      },
-      {
-        id: 'development',
-        title: 'Entwicklung in Webflow',
-        content:
-          'Effiziente Umsetzung mit Clean Code und optimaler Performance.',
-      },
-      {
-        id: 'launch',
-        title: 'Launch und darüber hinaus',
-        content:
-          'Testing, Optimierung und kontinuierliche Verbesserung nach dem Go-Live.',
       },
     ],
   },
