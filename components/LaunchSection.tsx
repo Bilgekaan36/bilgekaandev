@@ -64,20 +64,20 @@ export const LaunchSection = () => {
 
   return (
     <div
-      className='relative bg-[#1E1F26] transition-all duration-[400ms] ease-in-out px-4 md:px-8 xl:px-20 pb-20'
+      className='relative bg-[#101829] transition-all duration-[400ms] ease-in-out px-4 md:px-8 xl:px-20 pb-20'
       style={{
         height: '240vh',
-        backgroundImage: `linear-gradient(to top, white ${progress}%, #1E1F26 ${progress}%)`,
+        backgroundImage: `linear-gradient(to top, white ${progress}%, #101829 ${progress}%)`,
       }}
     >
       {/* Sticky Content Container */}
       <div className='sticky top-0 left-0 h-screen flex flex-col justify-center items-center text-center'>
         <div className='font-orbitron mb-10 md:mb-16 lg:mb-20'>
-          <h2 className='font-orbitron font-semibold text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
-            <span className='block sm:inline'>LASS UNS ABHEBEN</span>{' '}
+          <h2 className='font-orbitron font-bold text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <span className='block sm:inline'>Kein langes Onboarding</span>{' '}
           </h2>
-          <p className='text-white text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 text-center'>
-            Dein Projekt wird es dir danken!
+          <p className='text-white text-base font-bold sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 text-center'>
+            Ich steige ein, lege los und wir heben ab.
           </p>
         </div>
       </div>

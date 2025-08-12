@@ -4,29 +4,34 @@ import { AvatarGroup, AvatarGroupTooltip } from '../ui/avatar-group';
 
 const AVATARS = [
   {
-    src: 'https://pbs.twimg.com/profile_images/1909615404789506048/MTqvRsjo_400x400.jpg',
-    fallback: 'SK',
-    tooltip: 'Skyleen',
+    src: '/avatars/react-logo-v.png',
+    fallback: 'React',
+    tooltip: 'React',
+  },
+  // {
+  //   src: '/avatars/next-logo.png',
+  //   fallback: 'Next.js',
+  //   tooltip: 'Next.js',
+  // },
+  {
+    src: '/avatars/nodejs-logo.webp',
+    fallback: 'Nodejs',
+    tooltip: 'Nodejs',
   },
   {
-    src: 'https://pbs.twimg.com/profile_images/1593304942210478080/TUYae5z7_400x400.jpg',
-    fallback: 'CN',
-    tooltip: 'Shadcn',
+    src: '/avatars/vuejs-logo.png',
+    fallback: 'Vue.js',
+    tooltip: 'Vue.js',
   },
   {
-    src: 'https://pbs.twimg.com/profile_images/1677042510839857154/Kq4tpySA_400x400.jpg',
-    fallback: 'AW',
-    tooltip: 'Adam Wathan',
+    src: '/avatars/typescript-logo.png',
+    fallback: 'TypeScript',
+    tooltip: 'TypeScript',
   },
   {
-    src: 'https://pbs.twimg.com/profile_images/1783856060249595904/8TfcCN0r_400x400.jpg',
-    fallback: 'GR',
-    tooltip: 'Guillermo Rauch',
-  },
-  {
-    src: 'https://pbs.twimg.com/profile_images/1534700564810018816/anAuSfkp_400x400.jpg',
-    fallback: 'JH',
-    tooltip: 'Jhey',
+    src: '/avatars/psql-logo.jpg',
+    fallback: 'PostgreSQL',
+    tooltip: 'PostgreSQL',
   },
 ];
 

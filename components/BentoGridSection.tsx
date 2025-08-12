@@ -21,20 +21,38 @@ export const BentoGridSection = () => {
             <div className='absolute inset-px rounded-lg bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl lg:rounded-l-4xl' />
             <div className='relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]'>
               <div className='px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0'>
-                <p className='mt-2 text-lg font-medium tracking-tight text-gray-200 max-lg:text-center'>
-                  Mobile friendly
+                <p
+                  className='mt-2 text-lg font-bold tracking-tight max-lg:text-center bg-clip-text text-transparent'
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
+                  }}
+                >
+                  Performance-Optimierung
                 </p>
-                <p className='mt-2 max-w-lg text-sm/6 text-gray-300 max-lg:text-center'>
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                  qui lorem cupidatat commodo.
+                <p className='mt-2 max-w-lg text-md/6 text-gray-300 max-lg:text-center'>
+                  Zielgerichtetes{' '}
+                  <span className='font-semibold text-white'>
+                    Frontend- und Backend-Tuning{' '}
+                  </span>
+                  für{' '}
+                  <span className='font-semibold text-white'>
+                    kurze Ladezeiten
+                  </span>
+                  ,{' '}
+                  <span className='font-semibold text-white'>
+                    flüssige User Experience{' '}
+                  </span>
+                  und spürbar bessere{' '}
+                  <span className='font-semibold text-white'>Kennzahlen</span>.
                 </p>
               </div>
               <div className='@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm'>
                 <div className='absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl'>
                   <Image
                     alt=''
-                    src='https://tailwindcss.com/plus-assets/img/component-images/bento-03-mobile-friendly.png'
-                    className='size-full object-cover object-top'
+                    src='/lightspeed.svg'
+                    className='size-full object-cover'
                     height={100}
                     width={100}
                   />
@@ -47,12 +65,28 @@ export const BentoGridSection = () => {
             <div className='absolute inset-px rounded-lg bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl max-lg:rounded-t-4xl' />
             <div className='relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]'>
               <div className='px-8 pt-8 sm:px-10 sm:pt-10'>
-                <p className='mt-2 text-lg font-medium tracking-tight text-gray-200 max-lg:text-center'>
-                  Performance
+                <p
+                  className='mt-2 text-lg font-bold tracking-tight max-lg:text-center bg-clip-text text-transparent'
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
+                  }}
+                >
+                  Schnelle Integration ins Team
                 </p>
-                <p className='mt-2 max-w-lg text-sm/6 text-gray-300 max-lg:text-center'>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit
-                  maiores impedit.
+                <p className='mt-2 max-w-lg text-md/6 text-gray-300 max-lg:text-center'>
+                  Reibungsloser Einstieg in bestehende{' '}
+                  <span className='font-semibold text-white'>Codebases</span>,
+                  <span className='font-semibold text-white'>Toolchains</span>{' '}
+                  und{' '}
+                  <span className='font-semibold text-white'>Teamprozesse</span>{' '}
+                  produktiv ab{' '}
+                  <span className='font-semibold text-white'>Tag 1</span>, ohne
+                  lange{' '}
+                  <span className='font-semibold text-white'>
+                    Einarbeitungsphase
+                  </span>
+                  .
                 </p>
               </div>
               <div className='flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2'>
@@ -71,12 +105,31 @@ export const BentoGridSection = () => {
             <div className='absolute inset-px rounded-lg bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl' />
             <div className='relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]'>
               <div className='px-8 pt-8 sm:px-10 sm:pt-10'>
-                <p className='mt-2 text-lg font-medium tracking-tight text-gray-200 max-lg:text-center'>
-                  Security
+                <p
+                  className='mt-2 text-lg font-bold tracking-tight max-lg:text-center bg-clip-text text-transparent'
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
+                  }}
+                >
+                  Sichere & stabile Systeme
                 </p>
-                <p className='mt-2 max-w-lg text-sm/6 text-gray-300 max-lg:text-center'>
-                  Morbi viverra dui mi arcu sed. Tellus semper adipiscing
-                  suspendisse semper morbi.
+                <p className='mt-2 max-w-lg text-md/6 text-gray-300 max-lg:text-center'>
+                  Saubere{' '}
+                  <span className='font-semibold text-white'>
+                    Schnittstellenarchitektur{' '}
+                  </span>
+                  mit klarer{' '}
+                  <span className='font-semibold text-white'>
+                    Dokumentation
+                  </span>
+                  , stabilen{' '}
+                  <span className='font-semibold text-white'>Endpoints </span>
+                  und reibungslosen{' '}
+                  <span className='font-semibold text-white'>
+                    Integrationen
+                  </span>
+                  .
                 </p>
               </div>
               <div className='@container flex flex-1 items-center max-lg:py-6 lg:pb-2'>
@@ -95,12 +148,33 @@ export const BentoGridSection = () => {
             <div className='absolute inset-px rounded-lg bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl max-lg:rounded-b-4xl lg:rounded-r-4xl' />
             <div className='relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]'>
               <div className='px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0'>
-                <p className='mt-2 text-lg font-medium tracking-tight text-gray-200 max-lg:text-center'>
-                  Powerful APIs
+                <p
+                  className='mt-2 text-lg font-bold tracking-tight max-lg:text-center bg-clip-text text-transparent'
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
+                  }}
+                >
+                  Zuverlässige API-Integrationen
                 </p>
-                <p className='mt-2 max-w-lg text-sm/6 text-gray-300 max-lg:text-center'>
-                  Sit quis amet rutrum tellus ullamcorper ultricies libero dolor
-                  eget sem sodales gravida.
+                <p className='mt-2 max-w-lg text-md/6 text-gray-300 max-lg:text-center'>
+                  Implementierung von{' '}
+                  <span className='font-semibold text-white'>
+                    Security-Best-Practices
+                  </span>
+                  ,{' '}
+                  <span className='font-semibold text-white'>
+                    API-Absicherung
+                  </span>{' '}
+                  und{' '}
+                  <span className='font-semibold text-white'>
+                    Datenintegrität
+                  </span>{' '}
+                  für langfristige{' '}
+                  <span className='font-semibold text-white'>
+                    Betriebssicherheit
+                  </span>
+                  .
                 </p>
               </div>
               <div className='relative min-h-120 w-full grow'>
@@ -108,15 +182,82 @@ export const BentoGridSection = () => {
                   <div className='flex bg-gray-700 outline outline-white/5'>
                     <div className='-mb-px flex text-sm/6 font-medium text-gray-400'>
                       <div className='border-r border-b border-r-white/10 border-b-white/20 bg-white/5 px-4 py-2 text-white'>
-                        NotificationSetting.jsx
+                        user.routes.ts
                       </div>
                       <div className='border-r border-gray-600/10 px-4 py-2'>
-                        App.jsx
+                        apiClient.ts
                       </div>
                     </div>
                   </div>
                   <div className='px-6 pt-6 pb-14'>
                     {/* Your code example */}
+                    <pre className='text-sm text-gray-100'>
+                      {`// users.routes.ts
+import express, { RequestHandler } from 'express';
+import { z } from 'zod';
+import { authenticate } from './middleware/auth';
+import { UserService } from './services/UserService';
+
+const router = express.Router();
+
+// --- Schemas ---
+const paginateQuery = z.object({
+  page: z.coerce.number().int().min(1).default(1),
+  pageSize: z.coerce.number().int().min(1).max(100).default(20),
+});
+
+const createUserBody = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+  role: z.enum(['admin', 'user']).default('user'),
+});
+
+// --- Utils ---
+const validate =
+  (schema: z.ZodTypeAny): RequestHandler =>
+  (req, res, next) => {
+    const parsed = schema.safeParse({ ...req.query, ...req.body, ...req.params });
+    if (!parsed.success) {
+      return res.status(400).json({ success: false, error: parsed.error.flatten() });
+    }
+    // @ts-expect-error attach validated payload for handler
+    req.valid = parsed.data;
+    next();
+  };
+
+const asyncHandler =
+  (fn: RequestHandler): RequestHandler =>
+  (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+
+// --- Routes (v1) ---
+router.get(
+  '/api/v1/users',
+  authenticate,
+  validate(paginateQuery),
+  asyncHandler(async (req, res) => {
+    const { page, pageSize } = (req as any).valid as z.infer<typeof paginateQuery>;
+    const { items, total } = await UserService.list({ page, pageSize });
+
+    res.set('Cache-Control', 'private, max-age=30'); // small, safe client cache
+    return res.json({ success: true, data: items, meta: { page, pageSize, total } });
+  })
+);
+
+router.post(
+  '/api/v1/users',
+  authenticate,
+  validate(createUserBody),
+  asyncHandler(async (req, res) => {
+    const input = (req as any).valid as z.infer<typeof createUserBody>;
+    const user = await UserService.create(input);
+
+    res.location(\`/api/v1/users/\${user.id}\`);
+    return res.status(201).json({ success: true, data: user });
+  })
+);
+
+export default router;`}
+                    </pre>
                   </div>
                 </div>
               </div>

@@ -82,7 +82,7 @@ export const TestimonialsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className='bg-blue-700 py-20 overflow-hidden relative'
+      className='bg-gray-900 py-20 overflow-hidden relative'
       // Extra height for scroll effect
     >
       <div className='max-w-7xl mx-auto px-6'>
@@ -108,7 +108,7 @@ export const TestimonialsSection = () => {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className='bg-gray-900 rounded-2xl p-6 lg:p-8 h-full min-h-[280px] lg:min-h-[320px]'
+                className='bg-gray-800 rounded-2xl p-6 lg:p-8 h-full min-h-[280px] lg:min-h-[320px]'
               >
                 {/* Stars */}
                 <div className='flex gap-1 mb-6'>

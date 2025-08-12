@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { PlayCircle } from 'lucide-react';
 import localeIcon from '@/public/loc.svg';
 import goalIcon from '@/public/goal.svg';
 import { GradientText } from './ui/gradient-text';
@@ -10,65 +9,83 @@ import { GradientText } from './ui/gradient-text';
 export const ProjectsSection = () => {
   const projects = [
     {
-      name: 'Robert Steinmann',
-      company: 'Rocket Search GmbH',
-      website: 'www.rocketsearch-recruiting.com',
-      image: '/project1.jpg', // Replace with actual image path
-      logo: '/react-logo.png', // Replace with actual logo path
+      name: 'SaaS-Plattform im Energiesektor',
+      tag: 'SaaS / Cloud',
+      company: 'Confidential Client',
+      website: null,
+      image: '/project-energy.jpg',
       initialSituation: {
         title: 'Ausgangssituation',
         points: [
-          'Die Website war rudimentär aufgebaut – eher um überhaupt online präsent zu sein.',
-          'Das Unternehmen hat sich schneller entwickelt als die Website.',
+          'Individuell konfigurierbares Kundenportal, das pro Endkunde dynamische Features anzeigt.',
+          'Go-Live in nur 6 Wochen zwingend erforderlich – hohes Time-to-Market Risiko.',
         ],
       },
       solution: {
-        title: 'Lösung',
+        title: 'Lösung & Ergebnisse',
         points: [
           {
-            text: 'In Figma + Webflow haben wir',
-            highlight: 'einzigartiges Design entwickelt',
-            continuation: ', welches das dynamische Unternehmen widerspiegelt.',
+            text: 'Aufbau einer modularen',
+            highlight: 'UI-Component-Library',
+            continuation:
+              ' für schnelle Entwicklung und maximale Wiederverwendbarkeit.',
           },
           {
-            text: 'Die Website kann',
-            highlight: 'aktiv in der Akquise eingesetzt',
-            continuation: 'werden, um Kunden zu gewinnen.',
+            text: 'Entwicklung stabiler',
+            highlight: 'API-Integrationen in Laravel & Node.js',
+            continuation: ' mit klarer Schnittstellenarchitektur.',
+          },
+          {
+            text: 'Deployment auf',
+            highlight: 'skalierbarer Cloud-Architektur',
+            continuation: ' inkl. automatisierter CI/CD-Pipeline.',
+          },
+          {
+            text: 'KPIs:',
+            highlight: '40 % schnellere Feature-Auslieferung',
+            continuation: ' und 25 % geringere Wartungskosten in 3 Monaten.',
           },
         ],
       },
     },
     {
-      name: 'Fabian Bauer',
-      company: 'ECOM MATE',
-      website: 'www.fabian-bauer.de',
-      image: '/project2.jpg', // Replace with actual image path
-      logo: null,
+      name: 'Intelligentes QR-Menü mit Analytics',
+      tag: 'AI / Digital Menu',
+      company: 'Eiscafé Remi',
+      website: null,
+      image: '/project-qrmenu.jpg',
       initialSituation: {
         title: 'Ausgangssituation',
         points: [
-          'Die Website hatte viele versteckte Probleme. Änderungen und Pflege waren sehr aufwendig.',
-          {
-            text: 'Durch das Design konnte Fabians Website',
-            highlight: 'nicht',
-            continuation: 'in dem umkämpften Markt herausstechen.',
-          },
+          'Digitale Menü-Lösung für effizientere Bestellungen benötigt.',
+          'Keine Datenanalyse zu beliebten Produkten – Potenzial für Angebotsoptimierung.',
         ],
       },
       solution: {
-        title: 'Lösung',
+        title: 'Lösung & Ergebnisse',
         points: [
           {
-            text: 'Zusammen haben eine',
-            highlight: 'Custom-Lösung in Figma und Webflow entwickelt',
-            continuation: ', die technisch optimal aufgesetzt ist.',
+            text: 'Dynamisches',
+            highlight: 'QR-Menü mit Admin-Dashboard',
+            continuation:
+              ' für Live-Updates von Kategorien, Produkten & Preisen.',
           },
           {
-            text: 'Das Design ist',
-            highlight: 'absolut einzigartig',
-            continuation: 'und',
-            highlight2: 'perfekt',
-            continuation2: 'auf Fabian und seine Dienstleistung abgestimmt.',
+            text: 'Implementierung einer',
+            highlight: 'KI-basierten Analysefunktion',
+            continuation:
+              ' zur automatischen Sortierung der meistgesuchten Produkte.',
+          },
+          {
+            text: 'Mobile-First UI',
+            highlight: ' mit schnellen Ladezeiten',
+            continuation: ' und barrierearmem Zugriff.',
+          },
+          {
+            text: 'KPIs:',
+            highlight: '+30 % Umsatzsteigerung',
+            continuation:
+              ' durch bessere Angebotsplatzierung & +45 % höhere Nutzung des QR-Menüs.',
           },
         ],
       },
@@ -76,32 +93,33 @@ export const ProjectsSection = () => {
   ];
 
   return (
-    <section className='bg-blue-700 py-20 px-6'>
+    <section id='projects' className='bg-gray-900 py-20 px-6 relative'>
       <div className='max-w-7xl mx-auto'>
         {/* Header */}
-        <div className='font-orbitron text-center mb-10 md:mb-16 lg:mb-20'>
-          <h2 className='font-orbitron font-semibold text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
-            <span className='block sm:inline'>Erfolgreiche</span>{' '}
-            <GradientText className='inline-block sm:inline' text='Projekte' />
+        <div className='text-center mb-16'>
+          <h2 className='font-orbitron font-semibold text-white text-4xl md:text-5xl lg:text-6xl tracking-tight'>
+            Erfolgreiche <GradientText text='Projekte' />
           </h2>
         </div>
 
         {/* Project Cards */}
-        <div className='grid gap-8'>
+        <div className='grid gap-10'>
           {projects.map((project, index) => (
             <div
               key={index}
-              className='bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl rounded-2xl overflow-hidden'
+              className='group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/10 hover:border-white/30 shadow-lg hover:shadow-2xl rounded-2xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.01]'
             >
               <div className='grid md:grid-cols-2'>
-                {/* Left Side - Image and Info */}
+                {/* Left Side - Image */}
                 <div className='relative bg-gray-900'>
                   <div
-                    className='absolute inset-0 bg-cover bg-center opacity-50'
-                    style={{
-                      backgroundImage: `url(${project.image})`,
-                    }}
+                    className='absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-300'
+                    style={{ backgroundImage: `url(${project.image})` }}
                   />
+                  {/* Tag oben links */}
+                  <span className='absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-xs uppercase tracking-wide text-white px-3 py-1 rounded-full border border-white/20'>
+                    {project.tag}
+                  </span>
                   <div className='relative z-10 p-8 md:p-12 h-full grid grid-rows-[1fr_auto] min-h-[400px]'>
                     <div />
                     <div>
@@ -111,117 +129,69 @@ export const ProjectsSection = () => {
                       <p className='text-gray-300 text-sm italic mb-4'>
                         {project.company}
                       </p>
-                      <p className='text-gray-400 text-sm mb-6'>
-                        {project.website}
-                      </p>
-                      <button className='bg-white text-gray-900 px-6 py-3 rounded-full font-semibold inline-grid grid-cols-[auto_auto] items-center gap-2 hover:bg-gray-100 transition-colors'>
-                        <span>Testimonial ansehen</span>
-                        <PlayCircle className='w-5 h-5' />
-                      </button>
+                      {project.website && (
+                        <p className='text-gray-400 text-sm mb-6'>
+                          {project.website}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* Right Side - Content */}
-                <div className='p-8 md:p-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl'>
-                  {/* Logo Section */}
-                  {project.logo && (
-                    <div className='mb-8'>
-                      <Image
-                        src={project.logo}
-                        alt={`${project.company} Logo`}
-                        width={150}
-                        height={50}
-                        className='h-12 w-auto'
-                      />
-                    </div>
-                  )}
-                  {!project.logo && (
-                    <h4 className='text-2xl font-bold mb-8 text-gray-200'>
-                      {project.company}
-                    </h4>
-                  )}
-
-                  {/* Initial Situation - Grid Layout */}
-                  <div className='grid grid-cols-[auto_1fr] gap-4 mb-8'>
-                    {/* Left Column - Icon */}
-                    <div>
-                      <Image
-                        src={localeIcon}
-                        alt='initial Icon'
-                        width={50}
-                        height={50}
-                        className='w-8 h-8 opacity-20 invert'
-                      />
-                    </div>
-
-                    {/* Right Column - Content */}
-                    <div>
-                      <h5 className='text-xl font-bold mb-4 text-gray-200'>
-                        {project.initialSituation.title}
-                      </h5>
-                      <div className='grid gap-3'>
-                        {project.initialSituation.points.map((point, idx) => (
-                          <p
-                            key={idx}
-                            className='text-gray-300 leading-relaxed'
-                          >
-                            {typeof point === 'string' ? (
-                              point
-                            ) : (
-                              <>
-                                {point.text}{' '}
-                                <span className='font-bold'>
-                                  {point.highlight}
-                                </span>
-                                {point.continuation}
-                              </>
-                            )}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
+                <div className='p-8 md:p-12 flex flex-col justify-center bg-gradient-to-br from-white/5 to-white/[0.02]'>
+                  {/* Initial Situation */}
+                  <div className='mb-8'>
+                    <h5 className='text-2xl font-bold mb-4 text-gray-200'>
+                      <GradientText text={project.initialSituation.title} />
+                    </h5>
+                    <ul className='space-y-3'>
+                      {project.initialSituation.points.map((point, idx) => (
+                        <li
+                          key={idx}
+                          className='text-gray-300 leading-relaxed flex items-start gap-2'
+                        >
+                          <Image
+                            src={localeIcon}
+                            alt='initial Icon'
+                            width={20}
+                            height={20}
+                            className='opacity-50 invert'
+                          />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  {/* Solution - Grid Layout */}
-                  <div className='grid grid-cols-[auto_1fr] gap-4'>
-                    {/* Left Column - Icon */}
-                    <div>
-                      <Image
-                        src={goalIcon}
-                        alt='solution Icon'
-                        width={50}
-                        height={50}
-                        className='w-8 h-8 opacity-20 invert'
-                      />
-                    </div>
-
-                    {/* Right Column - Content */}
-                    <div>
-                      <h5 className='text-xl font-bold mb-4 text-gray-200 italic'>
-                        {project.solution.title}
-                      </h5>
-                      <div className='grid gap-3'>
-                        {project.solution.points.map((point, idx) => (
-                          <p
-                            key={idx}
-                            className='text-gray-300 leading-relaxed'
-                          >
+                  {/* Solution */}
+                  <div>
+                    <h5 className='text-2xl font-bold mb-4 text-gray-200 italic'>
+                      <GradientText text={project.solution.title} />
+                    </h5>
+                    <ul className='space-y-3'>
+                      {project.solution.points.map((point, idx) => (
+                        <li
+                          key={idx}
+                          className='text-gray-300 leading-relaxed flex items-start gap-2'
+                        >
+                          <Image
+                            src={goalIcon}
+                            alt='solution Icon'
+                            width={20}
+                            height={20}
+                            className='opacity-50 invert'
+                          />
+                          <span>
                             {point.text}{' '}
-                            <span className='font-bold'>{point.highlight}</span>
+                            <span className='font-bold text-white'>
+                              {point.highlight}
+                            </span>
                             {point.continuation}
-                            {point.highlight && (
-                              <>
-                                <span className='font-bold'>
-                                  {point.highlight}
-                                </span>
-                                {point.continuation}
-                              </>
-                            )}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>

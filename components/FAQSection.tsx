@@ -7,45 +7,46 @@ import { GradientText } from './ui/gradient-text';
 export const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      question: 'Was unterscheidet Dich von anderen Webflow Entwicklern?',
-      answer:
-        'Meine Kombination aus technischer Expertise, kreativem Design und strategischem Denken macht den Unterschied. Ich entwickle nicht nur Websites, sondern digitale Erlebnisse, die messbare Ergebnisse liefern. Dabei setze ich auf transparente Kommunikation, agile Prozesse und eine partnerschaftliche Zusammenarbeit auf Augenhöhe.',
-    },
-    {
-      question: 'Wie genau funktionieren die SEO Maßnahmen?',
-      answer:
-        'SEO ist ein ganzheitlicher Ansatz: Von der technischen Optimierung über Content-Strategie bis zur Performance-Optimierung. Ich analysiere Keywords, optimiere Meta-Tags, strukturiere Inhalte suchmaschinenfreundlich und stelle sicher, dass deine Website schnell lädt. Regelmäßige Reports zeigen dir den Fortschritt.',
-    },
-    {
-      question: 'Wie viel kostet eine Website?',
-      answer:
-        'Die Kosten hängen vom Umfang und der Komplexität deines Projekts ab. Eine einfache Landing Page startet bei 2.500€, während umfangreiche Corporate Websites bei 10.000€ beginnen. Nach einem kostenlosen Erstgespräch erhältst du ein transparentes Angebot mit allen Leistungen im Detail.',
-    },
-    {
-      question: 'Arbeitest Du ausschließlich mit Webflow?',
-      answer:
-        'Webflow ist mein bevorzugtes Tool für die meisten Projekte, da es die perfekte Balance aus Design-Freiheit und Performance bietet. Bei speziellen Anforderungen arbeite ich auch mit anderen Technologien wie React, Next.js oder WordPress. Die Wahl der Technologie richtet sich immer nach deinen Zielen.',
-    },
-    {
-      question: 'Bietest Du auch nur Webflow Entwicklungen an?',
-      answer:
-        'Ja, ich biete auch reine Entwicklungsleistungen an. Wenn du bereits ein fertiges Design hast, setze ich dieses pixelgenau in Webflow um. Dabei achte ich auf sauberen Code, Responsive Design und optimale Performance. Die Entwicklung erfolgt dabei in enger Abstimmung mit dir oder deinem Design-Team.',
-    },
-    {
-      question: 'Bietest Du auch nur SEO an?',
-      answer:
-        'Absolut! SEO kann als separater Service gebucht werden. Ich biete SEO-Audits, Keyword-Recherche, On-Page Optimierung und technisches SEO an. Auch die laufende Betreuung und Optimierung bestehender Websites ist möglich. Gemeinsam entwickeln wir eine Strategie, die zu deinen Zielen passt.',
-    },
-  ];
+const faqs = [
+  {
+    question: 'Wie schnell kannst Du in ein laufendes Projekt einsteigen?',
+    answer:
+      'In der Regel kann ich innerhalb von 48 Stunden starten. Dank meiner Erfahrung mit verschiedenen Tech-Stacks (React, Next.js, Node.js, Vue, u.a.) und agilen Prozessen bin ich in der Lage, mich sofort in bestehende Codebases und Workflows einzuarbeiten produktiv ab Tag 1.',
+  },
+  {
+    question: 'Arbeitest Du auch mit bestehenden Entwickler- oder Designteams?',
+    answer:
+      'Ja, ich bin es gewohnt, mich in bestehende Teams einzufügen – ob als zusätzliche Verstärkung im Sprint oder als alleinverantwortlicher Entwickler für einen Teilbereich. Klare Kommunikation, Git-Workflow und transparente Statusupdates gehören für mich zum Standard.',
+  },
+  {
+    question: 'Kannst Du auch komplexe API-Integrationen und Backend-Logik umsetzen?',
+    answer:
+      'Absolut. Ich habe Erfahrung in der Entwicklung und Anbindung von REST- und GraphQL-APIs, Datenbankabfragen (PostgreSQL, MongoDB) sowie Cloud-Funktionen. Dabei setze ich auf saubere Schnittstellenarchitektur, klare Dokumentation und performanten Code.',
+  },
+  {
+    question: 'Wie stellst Du die Qualität und Performance sicher?',
+    answer:
+      'Ich arbeite mit Code-Reviews, automatisierten Tests, Performance-Monitoring und CI/CD-Pipelines. So bleibt der Code stabil, skalierbar und wartungsfreundlich. Zusätzlich optimiere ich Ladezeiten und Lighthouse-Scores für bestmögliche User Experience.',
+  },
+  {
+    question: 'Unterstützt Du auch bei Konzeption und Architektur?',
+    answer:
+      'Ja – von der Ideenphase bis zur fertigen Umsetzung. Ich helfe bei der Auswahl des Tech-Stacks, dem Aufbau einer skalierbaren Architektur und der Planung von Features, um Entwicklungszeit und -kosten zu optimieren.',
+  },
+  {
+    question: 'Wie läuft die Zusammenarbeit typischerweise ab?',
+    answer:
+      'Nach einem kurzen Kick-off-Call stimmen wir Ziele, Deliverables und Kommunikationswege ab. Ich dokumentiere Fortschritte transparent und bin über die vereinbarten Kanäle (Slack, Teams, E-Mail) jederzeit erreichbar. Bei Bedarf liefere ich Zwischenstände in kurzen Review-Zyklen.',
+  },
+];
+
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className='bg-black py-20 px-6'>
+    <section className='bg-gray-900 py-20 px-6'>
       <div className='max-w-7xl mx-auto'>
         {/* Header */}
         <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>

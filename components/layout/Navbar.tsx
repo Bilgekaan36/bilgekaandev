@@ -6,12 +6,14 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatedCTAButton } from '../custom/AnimatedCTAButtons';
+import { GradientText } from '../ui/gradient-text';
 
 const navigation = [
-  { name: 'ÜBER MICH', href: '/about' },
-  { name: 'FEATURES', href: '/features' },
-  { name: 'MARKET', href: '/marketplace' },
-  { name: 'BLOG', href: '/blog' },
+  { name: 'Über mich', href: '#about' },
+  { name: 'Leistungen', href: '#services' },
+  { name: 'Projekte', href: '#projects' },
+  { name: 'Kontakt', href: '#contact' },
+  { name: 'Blog', href: '/blog' }, // Weiterleitung
 ];
 
 export const Navbar = () => {
@@ -26,14 +28,15 @@ export const Navbar = () => {
         {/* Logo */}
         <div className='flex lg:flex-1'>
           <Link href='/' className='-m-1.5 p-1.5'>
-            <span className='sr-only'>Your Company</span>
-            <Image
+            {/* <Image
               alt='logo'
               src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500'
               className='h-8 w-auto'
               height={100}
               width={100}
-            />
+            /> */}
+            <GradientText className='text-2xl font-extrabold' text='BLGKN' />
+            <span className='text-2xl font-extrabold text-white'>YLMZ</span>
           </Link>
         </div>
 
@@ -65,7 +68,7 @@ export const Navbar = () => {
         {/* Desktop Login */}
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <Link href='/login' className='text-sm/6 font-semibold text-white'>
-            <AnimatedCTAButton text='ERSTGESPRÄCH' variant='default' />
+            <AnimatedCTAButton text='Projekt anfragen' variant='default' />
           </Link>
         </div>
       </nav>
@@ -124,7 +127,10 @@ export const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5'
                 >
-                  <AnimatedCTAButton text='ERSTGESPRÄCH' variant='default' />
+                  <AnimatedCTAButton
+                    text='Projekt anfragen'
+                    variant='default'
+                  />
                 </Link>
               </div>
             </div>

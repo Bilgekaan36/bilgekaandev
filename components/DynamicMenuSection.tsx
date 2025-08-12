@@ -10,42 +10,52 @@ export const DynamicMenuSection = () => {
   const menuItems = [
     {
       id: 1,
-      title: 'Veraltete Webseite',
+      title: 'Engpass im Entwicklerteam',
       content: {
         number: '01',
-        title: 'KEINE ODER VERALTETE WEBSEITE',
+        title: 'PERSONELLE ENGPÄSSE',
         description:
-          'Dein Unternehmen wird online nicht ordentlich repräsentiert und ihr braucht eine neue Website?',
+          'Deadlines rücken näher, aber Ihrem Team fehlen erfahrene Entwickler, um Features rechtzeitig fertigzustellen?',
       },
     },
     {
       id: 2,
-      title: 'Keine Kundenanfragen',
+      title: 'Schwache Frontend-Performance',
       content: {
         number: '02',
-        title: 'GERINGE ONLINE-SICHTBARKEIT',
+        title: 'PERFORMANCE-PROBLEME',
         description:
-          'Potenzielle Kunden finden dich nicht online und du verpasst wertvolle Geschäftschancen?',
+          'Langsame Ladezeiten, ruckelige Interfaces oder technische Bugs führen zu unzufriedenen Nutzern und steigenden Absprungraten?',
       },
     },
     {
       id: 3,
-      title: 'Probleme mit WordPress & Co.',
+      title: 'Instabile oder unklare APIs',
       content: {
         number: '03',
-        title: 'TECHNISCHE PROBLEME',
+        title: 'API- UND INTEGRATIONS PROBLEME',
         description:
-          'Ständige Wartungsarbeiten, Sicherheitslücken und Performance-Probleme belasten dein Business?',
+          'Ihre API-Schnittstellen sind instabil, schlecht dokumentiert oder erschweren die Integration neuer Systeme?',
       },
     },
     {
       id: 4,
-      title: 'Website ohne Wow-Effekt',
+      title: 'Fehlende CI/CD-Prozesse',
       content: {
         number: '04',
-        title: 'LANGWEILIGES DESIGN',
+        title: 'LANGSAME RELEASE-ZYKLEN',
         description:
-          'Deine aktuelle Website wirkt unprofessionell und hebt sich nicht von der Konkurrenz ab?',
+          'Ohne automatisierte Tests und CI/CD-Prozesse verzögern sich Deployments und die Time-to-Market verlängert sich unnötig?',
+      },
+    },
+    {
+      id: 5,
+      title: 'Gebundene interne Ressourcen',
+      content: {
+        number: '05',
+        title: 'FEHLENDE KAPAZITÄTEN',
+        description:
+          'Das interne Team ist voll ausgelastet, neue Features oder Produktideen bleiben liegen und wichtige Innovationen verzögern sich?',
       },
     },
   ];
@@ -60,8 +70,8 @@ export const DynamicMenuSection = () => {
 
       // Only proceed if the container is significantly in view
       if (
-        containerRect.bottom < windowHeight * 0.2 ||
-        containerRect.top > windowHeight * 0.8
+        containerRect.bottom < windowHeight * 0.4 ||
+        containerRect.top > windowHeight * 1
       ) {
         return;
       }
@@ -152,8 +162,8 @@ export const DynamicMenuSection = () => {
       <div className='sticky top-0 min-h-screen flex flex-col justify-center'>
         <div className='max-w-7xl mx-auto px-6 w-full'>
           {/* Header */}
-          <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
-            <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+          <div className='font-orbitron text-left mt-8 mb-4 md:mb-8 lg:mb-10'>
+            <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight md:mt-5'>
               <span className='block sm:block'>Kennst du diese</span>{' '}
               <GradientText
                 className='inline-block sm:inline'
@@ -161,13 +171,13 @@ export const DynamicMenuSection = () => {
               />
             </h2>
             <p className='text-gray-300 text-base sm:text-lg md:text-xl lg:text-2xl mt-1 md:mt-4 lg:mt-6 max-w-full sm:max-w-[90%] md:max-w-[80%] lg:max-w-2xl'>
-              Lass uns diese gemeinsam überwältigen!
+              Lass uns diese gemeinsam bewältigen!
             </p>
           </div>
 
           <div className='grid lg:grid-cols-2 gap-16 items-center'>
             {/* Left Menu */}
-            <div className='space-y-12'>
+            <div className='space-y-12 hidden lg:block'>
               {menuItems.map((item, index) => (
                 <div
                   key={item.id}
@@ -245,11 +255,11 @@ export const DynamicMenuSection = () => {
 
                 <h3
                   className={`
-                  text-4xl lg:text-5xl font-bold mb-8 transition-all duration-1000
+                  text-4xl lg:text-4xl font-bold mb-8 transition-all duration-1000
                   bg-gradient-to-r ${getGradientColor(
                     activeSection
                   )} bg-clip-text text-transparent
-                  leading-tight
+                  leading-tight break-words
                 `}
                 >
                   {menuItems[activeSection]?.content.title}
@@ -281,7 +291,7 @@ export const DynamicMenuSection = () => {
                   </div>
                   <div className='flex justify-between mt-2 text-sm text-gray-500'>
                     <span>01</span>
-                    <span>04</span>
+                    <span>05</span>
                   </div>
                 </div>
 

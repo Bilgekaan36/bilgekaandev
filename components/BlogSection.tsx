@@ -36,13 +36,16 @@ export const BlogSection = () => {
   ];
 
   return (
-    <section className='bg-black py-20 px-6'>
+    <section className='bg-gray-900 py-20 px-6'>
       <div className='max-w-7xl mx-auto flex flex-col'>
         {/* Header */}
         <div className='font-orbitron text-left mb-10 md:mb-16 lg:mb-20'>
-          <h2 className='font-orbitron font-semibold leading-none text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
-            <GradientText className='inline-block sm:inline' text='React' />{' '}
-            <span className='block sm:block'>im Fokus</span>
+          <h2 className='font-orbitron font-semibold leading-none text-white text-[1.75em] sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mt-4 md:mt-5'>
+            <GradientText
+              className='inline-block sm:inline'
+              text='Insights & Trends'
+            />
+            <span className='block sm:block'> aus der Webentwicklung</span>
           </h2>
         </div>
 
