@@ -3,8 +3,34 @@
 export interface BlogSection {
   id: string;
   title: string;
-  content: string;
+  content?: string;
   image?: string;
+}
+
+export type CodeLanguage =
+  | 'ts'
+  | 'tsx'
+  | 'js'
+  | 'jsx'
+  | 'bash'
+  | 'json'
+  | 'sql'
+  | 'css'
+  | 'md';
+
+export interface CodeSnippet {
+  language: CodeLanguage;
+  code: string;
+  filename?: string; // optional: "actions.ts"
+  highlightLines?: number[]; // optional: [3,4,10]
+}
+
+export interface BlogSection {
+  id: string;
+  title: string;
+  content?: string; // optional, damit reine Code-/Bild-Sektionen möglich sind
+  image?: string;
+  code?: CodeSnippet; // << neu
 }
 
 export interface BlogPost {
@@ -39,7 +65,7 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: 'Bilgekaan Yilmaz',
       role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',
-      avatar: '/avatars/bilgekaan.jpg',
+      avatar: '/avatars/bilgekaan.png',
     },
     readTime: '14 Min',
     featured: true,
@@ -69,14 +95,14 @@ export const blogPosts: BlogPost[] = [
         id: 'suspense-streaming',
         title: 'Suspense & Streaming richtig einsetzen',
         content:
-          'Suspense ermöglicht partielle, frühe Auslieferung; „Wasserfall“ vermeiden, kritische Teile zuerst streamen.\n\n• Above-the-fold priorisieren: kritische Server Components ohne tiefe Abhängigkeiten rendern.\n• Progressive Hydration: Client-Islands nachrangig laden.\n• Pattern: Layout (Server) → Slot (Suspense) → Fallback (Skeleton) → Child (Server/Client) – so werden teure Subtrees parallelisiert.\n• Anti-Pattern: globaler Suspense um die ganze Seite → verliert Granularität.',
+          'Suspense ermöglicht partielle, frühe Auslieferung; „Wasserfall“ vermeiden, kritische Teile zuerst streamen.\n\n• Above-the-fold priorisieren: kritische Server Components ohne tiefe Abhängigkeiten rendern.\n• Progressive Hydration: Client-Islands nachrangig laden.\n• Pattern: Layout (Server) → Slot (Suspense) → Fallback (Skeleton) → Child (Server/Client) so werden teure Subtrees parallelisiert.\n• Anti-Pattern: globaler Suspense um die ganze Seite → verliert Granularität.',
         image: '/blog/1_blog/rsc-suspense.png',
       },
       {
         id: 'server-actions',
         title: 'Server Actions: Mutationen ohne API-Boilerplate',
         content:
-          'Server Actions erlauben Form- und Event-basierte Mutationen direkt auf dem Server – ohne manuelle REST/GraphQL-Runden.\n\n• Ideal für: Create/Update/Delete, Auth-Flows, Upload-Pipelines.\n• Validation: Zod/Yup serverseitig; Rückgabe strukturierter Fehler an Client Components.\n• Revalidation: nach erfolgreicher Mutation gezielte Cache-Invalidierung per Tags.\n• Security: Actions leben im Server-Trust-Boundary; Eingaben trotzdem strikt validieren und Fehler pfleglich behandeln.',
+          'Server Actions erlauben Form- und Event-basierte Mutationen direkt auf dem Server ohne manuelle REST/GraphQL-Runden.\n\n• Ideal für: Create/Update/Delete, Auth-Flows, Upload-Pipelines.\n• Validation: Zod/Yup serverseitig; Rückgabe strukturierter Fehler an Client Components.\n• Revalidation: nach erfolgreicher Mutation gezielte Cache-Invalidierung per Tags.\n• Security: Actions leben im Server-Trust-Boundary; Eingaben trotzdem strikt validieren und Fehler pfleglich behandeln.',
         image: '/blog/1_blog/rsc-actions.png',
       },
       {
@@ -105,63 +131,116 @@ export const blogPosts: BlogPost[] = [
         title: 'Häufige Fallstricke in Projekten',
         content:
           'Erfahrungen aus realen Codebases:\n\n• „use client“ an zu hohen Stellen → unnötig großes Client-Bundle.\n• Kein Tag-System → Revalidation wird chaotisch/teuer.\n• Fetch im Client statt Server → doppelte Logik, schlechtere TTFB.\n• Monolithische Suspense → Streams kommen zu spät.\n• Unklare Fehlerpfade in Server Actions → UI ohne Feedback.\n• Geheimnisse im Client-Code → Sicherheitsrisiko.',
-        image: '/blog/1_blog/rsc-pitfalls.png',
+        image: undefined,
       },
       {
         id: 'fazit',
         title: 'Fazit & Empfehlung',
         content:
           'RSC sind kein Selbstzweck. Richtig eingesetzt reduzieren sie Client-JS, vereinfachen Data-Flows und verbessern wahrgenommene Performance. Der Schlüssel ist sauberes Boundary-Design, explizites Caching/Revalidation und gezielter Einsatz von Server Actions. Starte mit einer Route, messe Effekte und rolle Patterns schrittweise aus.',
-        image: '/blog/1_blog/rsc-conclusion.jpg',
+        image: '/blog/1_blog/rsc-conclusion.png',
       },
     ],
   },
   {
     id: 2,
-    slug: 'webflow-animationen-wow-effekt',
+    slug: 'typescript-6-neue-features-grosse-codebases',
     category: 'TUTORIAL',
-    date: '22. April 2025',
-    title: 'Die Top 5 Webflow Animationen für den Wow-Effekt',
+    date: '13. August 2025',
+    title: 'TypeScript 6 – Was die neuen Features für große Codebases bedeuten',
     excerpt:
-      'Entdecke die kraftvollsten Animationen in Webflow, die deine Website zum Leben erwecken und Besucher begeistern.',
-    featuredImage: '/blog/webflow-animations.jpg',
+      'TypeScript 6 bringt entscheidende Verbesserungen für große Codebases – von präziseren Generics über stabile Dekoratoren bis hin zu smarterem Resource-Management.',
+    featuredImage: '/blog/1_blog/typescript6.png',
     author: {
       name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
+      role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',
+      avatar: '/avatars/bilgekaan.png',
     },
-    readTime: '6 Min',
+    readTime: '8 Min',
     featured: false,
     sections: [
       {
         id: 'intro',
-        title: 'Einführung in Webflow Animationen',
+        title: 'Einleitung',
         content:
-          'Webflow bietet unzählige Möglichkeiten, Websites mit beeindruckenden Animationen zu versehen. In diesem Tutorial zeigen wir die Top 5 Animationen, die garantiert für einen Wow-Effekt sorgen.',
+          'TypeScript ist längst der De-facto-Standard für komplexe JavaScript-Projekte. Mit Version 6 legt Microsoft erneut nach – nicht nur mit kosmetischen Änderungen, sondern mit Features, die gerade in Enterprise-Codebases und für skalierende SaaS-Projekte entscheidend sein können. In diesem Artikel zeige ich die wichtigsten Neuerungen, warum sie in großen Projekten relevant sind und wie du als IT-Freelancer oder Tech-Lead sie nutzt, um Projekte sauberer, wartbarer und attraktiver für Kunden zu gestalten.',
       },
       {
-        id: 'parallax',
-        title: 'Parallax Scrolling',
+        id: 'noinfer',
+        title: '“NoInfer” – Präzisere Generics ohne Typ-Hölle',
         content:
-          'Der Klassiker unter den Webanimationen. Parallax-Effekte erzeugen Tiefe und lassen Ihre Website dreidimensional wirken.',
+          'Wer in großen Projekten mit komplexen Generics arbeitet, kennt das Problem: TypeScript inferiert manchmal zu viel, manchmal zu wenig – und plötzlich hat man implizit breite Typen, die Fehler nicht mehr zuverlässig abfangen. Mit NoInfer<T> lässt sich die Inferenz gezielt stoppen. Das verhindert, dass Parameter ungewollt „weicher“ werden – und sorgt für klarere API-Contracts, stabilere Typdefinitionen und weniger schwer nachvollziehbare Build-Fehler.',
+        code: {
+          language: 'ts',
+          code: `function update<T>(obj: T, updates: NoInfer<T>) {
+  return { ...obj, ...updates };
+}`,
+          filename: 'update.ts',
+        },
       },
       {
-        id: 'hover',
-        title: 'Kreative Hover-Effekte',
+        id: 'variadic-tuple',
+        title: 'Variadic Tuple Types 2.0 – Mächtiger in der Praxis',
         content:
-          'Hover-Animationen sind der perfekte Weg, um Interaktivität zu signalisieren und die User Experience zu verbessern.',
+          'Variadic Tuple Types gab es schon, aber mit TS 6 sind sie flexibler: besseres Mergen mehrerer Tuple-Typen und klar typ-sichere Verkettung von Argumentlisten. Ideal für Middleware-Pipelines oder Funktionskomposition, bei denen jeder Schritt neue Parameter ergänzt – ohne auf any-Workarounds zurückzufallen.',
+        code: {
+          language: 'ts',
+          code: `type PipelineArgs<T extends unknown[]> = [...T, string];`,
+          filename: 'pipeline.ts',
+        },
       },
       {
-        id: 'scroll-trigger',
-        title: 'Scroll-Triggered Animations',
+        id: 'decorators',
+        title: 'Dekoratoren – Jetzt offiziell stabil',
         content:
-          'Elemente, die beim Scrollen erscheinen, halten die Aufmerksamkeit der Besucher und führen sie durch die Seite.',
+          'Nach Jahren im Experimentiermodus sind ECMAScript-konforme Dekoratoren offiziell unterstützt. Das ist ein Gamechanger für Dependency Injection in Node.js-Services, ORM-Model-Deklarationen (z. B. Prisma/TypeORM) und API-Route-Metadata. Für Freelancer heißt das: moderne Architektur-Patterns ohne Framework-Sonderwege – sauber, standardnah, wartbar.',
       },
       {
-        id: 'morph',
-        title: 'Shape Morphing',
+        id: 'exhaustive-switch',
+        title: 'Exhaustive Switch Checking – Weniger „vergessene“ Cases',
         content:
-          'Moderne SVG-Animationen, die Formen ineinander übergehen lassen, sorgen für einen futuristischen Look.',
+          'Gerade in großen Codebases schleichen sich Fehler ein, wenn neue Enum-/Union-Werte dazukommen. Mit verbesserten Exhaustiveness-Checks warnt TS 6 verlässlicher bei unvollständigen Switches.',
+        code: {
+          language: 'ts',
+          code: `switch (status) {
+  case "open": break;
+  case "closed": break;
+  default:
+    const _exhaustive: never = status; // Fehler, falls neuer Wert fehlt
+}`,
+          filename: 'status.ts',
+          highlightLines: [5],
+        },
+      },
+      {
+        id: 'import-resolver',
+        title: 'Smarterer Import-Resolver – Weniger Build-Brüche',
+        content:
+          'In monorepo-lastigen Enterprise-Projekten war es oft ein Alptraum, wenn Module in verschiedenen Pfaden lagen. TS 6 verbessert das Mapping von package.json-Exports, stabilisiert IntelliSense bei Alias-Pfaden und reduziert Konflikte zwischen ESM und CommonJS – spürbare Reibungsverluste in pnpm-/Turborepo-Setups gehen zurück.',
+      },
+      {
+        id: 'using-syntax',
+        title: 'Neue using-Syntax für Resource Management',
+        content:
+          'Mit der neuen using-Syntax (ECMAScript Dispose Proposal) gibst du Ressourcen automatisch frei. Für Node.js-Projekte mit Streams, File-Handles oder DB-Verbindungen hochrelevant – weniger Memory-Leaks, klarere Lifecycle-Logik.',
+        code: {
+          language: 'ts',
+          code: `await using conn = await db.connect();
+// conn wird automatisch geschlossen`,
+          filename: 'db.ts',
+        },
+      },
+      {
+        id: 'impact',
+        title: 'Warum das für große Codebases so wichtig ist',
+        content:
+          '• Konsistenz: Neue Features wie NoInfer und Exhaustive Checks machen APIs robuster.\n• Wartbarkeit: Dekoratoren und Resource-Management reduzieren Boilerplate.\n• Performance in Teams: Klare Typen = weniger Zeit in Code Reviews und Bugfixes.\n\nFür IT-Freelancer: klare Positionierung als Experte für skalierbare TypeScript-Architekturen – genau das, was Headhunter und Enterprise-Kunden suchen.',
+      },
+      {
+        id: 'fazit',
+        title: 'Mein Fazit',
+        content:
+          'TypeScript 6 ist kein „Nice-to-Have“, sondern ein strategischer Schritt Richtung Enterprise-Reife. Wer diese Features gezielt einsetzt, erhöht Code-Qualität, wird für Kunden unverzichtbar und kann höhere Tagessätze rechtfertigen. 2025 solltest du TS 6 nicht nur kennen – nutze es aktiv als USP in Pitches.',
       },
     ],
   },
