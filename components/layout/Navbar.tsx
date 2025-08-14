@@ -60,9 +60,7 @@ export const Navbar = () => {
 
         {/* Desktop Login */}
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-          <Link href='/login' className='text-sm/6 font-semibold text-white'>
-            <AnimatedCTAButton text='Projekt anfragen' variant='default' />
-          </Link>
+          <AnimatedCTAButton text='Projekt anfragen' variant='default' />
         </div>
       </nav>
 
@@ -105,16 +103,7 @@ export const Navbar = () => {
                 ))}
               </div>
               <div className='py-6'>
-                <Link
-                  href='/login'
-                  onClick={() => setMobileMenuOpen(false)}
-                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5'
-                >
-                  <AnimatedCTAButton
-                    text='Projekt anfragen'
-                    variant='default'
-                  />
-                </Link>
+                <AnimatedCTAButton text='Projekt anfragen' variant='default' />
               </div>
             </div>
           </div>

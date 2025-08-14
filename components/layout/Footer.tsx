@@ -30,13 +30,7 @@ export const Footer = () => {
               </h2>
             </div>
             <div className='mt-10 flex items-center gap-x-6'>
-              <Link href='/erstgespraech'>
-                <AnimatedCTAButton
-                  text='Projekt anfragen'
-                  variant='xl'
-                  onClick={() => alert('XL Button geklickt!')}
-                />
-              </Link>
+              <AnimatedCTAButton text='Projekt anfragen' variant='xl' />
             </div>
           </div>
 

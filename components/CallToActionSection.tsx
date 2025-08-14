@@ -18,11 +18,7 @@ export const CallToActionSection = () => {
             </p>
           </div>
           <div className='self-center'>
-            <AnimatedCTAButton
-              text='Projekt anfragen'
-              variant='xl'
-              onClick={() => alert('XL Button geklickt!')}
-            />
+            <AnimatedCTAButton text='Projekt anfragen' variant='xl' />
           </div>
         </div>
       </div>

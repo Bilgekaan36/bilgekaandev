@@ -94,11 +94,7 @@ export const HeroSection = () => {
             <strong> organisatorisch</strong>.
           </p>
           <div className='mt-10 flex items-center gap-x-6'>
-            <AnimatedCTAButton
-              text='Projekt anfragen'
-              variant='xl'
-              onClick={() => alert('XL Button geklickt!')}
-            />
+            <AnimatedCTAButton text='Projekt anfragen' variant='xl' />
           </div>
           <div className='mt-12'>
             <Marquee>

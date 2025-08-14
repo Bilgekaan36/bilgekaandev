@@ -5,18 +5,27 @@ interface AnimatedCTAButtonProps {
   text?: string;
   variant?: 'default' | 'glow' | 'xl';
   onClick?: () => void;
+  href?: string;
+  openInNewTab?: boolean;
 }
 
 export const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = ({
   text = 'ERSTGESPRÄCH',
   variant = 'default',
   onClick,
+  href = 'https://calendly.com/bilgekaan/it-kickoff',
+  openInNewTab = true,
 }) => {
   const handleClick =
     onClick ||
     (() => {
-      console.log('Button clicked');
-      // Default action
+      if (openInNewTab) {
+        // Öffnet in neuem Tab
+        window.open(href, '_blank', 'noopener,noreferrer');
+      } else {
+        // Öffnet im gleichen Tab
+        window.location.href = href;
+      }
     });
 
   // Varianten-Styles
