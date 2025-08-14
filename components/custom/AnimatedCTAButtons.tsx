@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useLintrk } from '@/lib/useLintrk';
 
 interface AnimatedCTAButtonProps {
   text?: string;
@@ -16,6 +17,8 @@ export const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = ({
   href = 'https://calendly.com/bilgekaan/it-kickoff',
   openInNewTab = true,
 }) => {
+  const track = useLintrk();
+
   const handleClick =
     onClick ||
     (() => {
@@ -26,6 +29,7 @@ export const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = ({
         // Öffnet im gleichen Tab
         window.location.href = href;
       }
+      track(1234567); // deine LinkedIn Conversion-ID
     });
 
   // Varianten-Styles

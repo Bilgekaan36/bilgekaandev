@@ -47,6 +47,61 @@ export default function Datenschutz() {
           Einschränkung der Verarbeitung, Widerspruch gegen Verarbeitung sowie
           Datenübertragbarkeit (Art. 15–20 DSGVO).
         </p>
+
+        <section id='linkedin-insight-tag'>
+          <h3>LinkedIn Insight Tag</h3>
+
+          <p>
+            Wir nutzen auf unserer Website den{' '}
+            <strong>LinkedIn Insight Tag</strong> der LinkedIn Ireland Unlimited
+            Company, Wilton Place, Dublin 2, Irland.
+          </p>
+
+          <p>
+            <strong>Zweck:</strong>
+            <br />
+            Das LinkedIn Insight Tag ermöglicht uns, den Erfolg unserer
+            LinkedIn-Werbekampagnen zu messen, Zielgruppen für Anzeigen zu
+            erstellen und unsere Marketingmaßnahmen zu optimieren.
+          </p>
+
+          <p>
+            <strong>Erfasste Daten:</strong>
+            <br />
+            Hierzu werden u. a. die URL, Referrer-URL, IP-Adresse (gekürzt oder
+            gehasht), Geräte- und Browserinformationen sowie Zeitstempel
+            erfasst.
+          </p>
+
+          <p>
+            <strong>Rechtsgrundlage:</strong>
+            <br />
+            Die Verarbeitung erfolgt auf Grundlage Ihrer{' '}
+            <strong>Einwilligung</strong> nach Art. 6 Abs. 1 lit. a DSGVO. Ohne
+            Ihre Zustimmung wird das Tool nicht geladen.
+          </p>
+
+          <p>
+            <strong>Widerruf:</strong>
+            <br />
+            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft
+            über die
+            <a href='/cookies'>Cookie-Einstellungen</a> widerrufen.
+          </p>
+
+          <p>
+            <strong>Weitere Informationen:</strong>
+            <br />
+            Datenschutzerklärung von LinkedIn:
+            <a
+              href='https://www.linkedin.com/legal/privacy-policy'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              https://www.linkedin.com/legal/privacy-policy
+            </a>
+          </p>
+        </section>
       </div>
     </main>
   );

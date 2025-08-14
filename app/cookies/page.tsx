@@ -1,4 +1,5 @@
 import { GradientText } from '@/components/ui/gradient-text';
+import { OpenPreferencesButton } from '@/components/cookie-consent/OpenPreferencesButton';
 
 export default function Cookies() {
   return (
@@ -38,6 +39,7 @@ export default function Cookies() {
           Button im Footer ändern.
         </p>
       </div>
+      <OpenPreferencesButton />
     </main>
   );
 }
