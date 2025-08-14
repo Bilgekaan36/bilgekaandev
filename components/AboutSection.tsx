@@ -106,7 +106,7 @@ export const AboutSection = () => {
                 entwickle ich
                 <span className='font-semibold text-white'>
                   {' '}
-                  performante React/Next.js-Anwendungen
+                  performante React/Next.js-Anwendungen{' '}
                 </span>
                 und{' '}
                 <span className='font-semibold text-white'>
