@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GradientText } from './ui/gradient-text';
-import { HighlightText } from './ui/highlight-text';
 
-export const DynamicMenuSection = () => {
+export const ScrollMenuSection = () => {
   const [activeSection, setActiveSection] = useState(0);
   const sectionRefs = useRef<Array<HTMLDivElement | null>>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);

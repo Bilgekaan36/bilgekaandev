@@ -3,7 +3,7 @@ import { AboutSection } from '@/components/AboutSection';
 import { BentoGridSection } from '@/components/BentoGridSection';
 import { BlogSection } from '@/components/BlogSection';
 import { CallToActionSection } from '@/components/CallToActionSection';
-import { DynamicMenuSection } from '@/components/DynamicMenuSection';
+import { ScrollMenuSection } from '@/components/ScrollMenuSection';
 import { FAQSection } from '@/components/FAQSection';
 import { HeroSection } from '@/components/HeroSection';
 import { LaunchSection } from '@/components/LaunchSection';
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <div>
       <HeroSection />
-      <DynamicMenuSection />
+      <ScrollMenuSection />
       <AboutSection />
       <BentoGridSection />
       <ProcessSection />
