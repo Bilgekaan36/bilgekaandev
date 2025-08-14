@@ -58,7 +58,7 @@ export const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = ({
   return (
     <button
       onClick={handleClick}
-      className={`group relative ${styles.padding} font-bold text-white transition-all duration-300 rounded-full hover:scale-105`}
+      className={`group relative ${styles.padding} font-bold text-white transition-all duration-300 rounded-full hover:scale-105 cursor-pointer`}
       style={{
         background:
           'linear-gradient(90deg, #61dafb 0%, #4cc3a5 25%, #41b883 50%, #4cc3a5 75%, #61dafb 100%)',
@@ -76,7 +76,9 @@ export const AnimatedCTAButton: React.FC<AnimatedCTAButtonProps> = ({
         e.currentTarget.style.boxShadow = styles.boxShadow;
       }}
     >
-      <span className={`font-orbitron flex items-center gap-2 ${styles.fontSize}`}>
+      <span
+        className={`font-orbitron flex items-center gap-2 ${styles.fontSize}`}
+      >
         {text}
         <span
           className='inline-block transition-transform duration-300 ease-in-out group-hover:rotate-45'
