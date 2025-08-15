@@ -1,45 +1,49 @@
 'use client';
 
-import React from 'react';
 import Script from 'next/script';
 
-const partnerId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID ?? '';
+type Props = {
+  /** LinkedIn Partner ID, z.B. "1234567" */
+  pid?: string;
+  /** Deine Domain für den noscript-Fallback (optional) */
+  domain?: string;
+};
 
 /**
- * Lädt das LinkedIn Insight Tag (Marketing) – wird von ScriptGate gated.
- * Quelle: https://www.linkedin.com/help/lms/answer/a427660
+ * Lädt das LinkedIn Insight Tag inkl. noscript-Pixel.
+ * Nur rendern, wenn Consent "marketing" erteilt ist (über ScriptGate).
  */
-export default function LinkedInInsight() {
-  if (!partnerId) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('[LinkedInInsight] NEXT_PUBLIC_LINKEDIN_PARTNER_ID fehlt.');
-    }
-  }
+export default function LinkedInInsight({ pid }: Props) {
+  if (!pid) return null;
 
   return (
     <>
-      {/* Init: Partner-ID registrieren */}
-      <Script id='li-insight-init' strategy='afterInteractive'>
+      <Script id='linkedin-insight' strategy='afterInteractive'>
         {`
-          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-          window._linkedin_data_partner_ids.push("${partnerId}");
+          (function(){
+            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+            window._linkedin_data_partner_ids.push(${JSON.stringify(pid)});
+          })();
         `}
       </Script>
-
-      {/* Loader */}
-      <Script id='li-insight-loader' strategy='afterInteractive'>
-        {`
-          (function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}
-            var s=document.getElementsByTagName("script")[0];
-            var b=document.createElement("script");
-            b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
-            s.parentNode.insertBefore(b,s);
-          })(window.lintrk);
-        `}
-      </Script>
-
-      {/* Noscript Pixel (wird bei deaktiviertem JS von React zwar nicht ausgeführt,
-          ist aber Best Practice, falls der HTML-Output gecached/serviert wird) */}
+      <Script
+        id='linkedin-insight-loader'
+        strategy='afterInteractive'
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(l) {
+              if (window.lintrk) return;
+              window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+              window.lintrk.q=[];
+              var s = document.createElement("script");
+              s.type = "text/javascript"; s.async = true; s.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+              var x = document.getElementsByTagName("script")[0];
+              x.parentNode.insertBefore(s, x);
+            })(window);
+          `,
+        }}
+      />
+      {/* noscript Fallback */}
       <noscript>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -47,7 +51,9 @@ export default function LinkedInInsight() {
           width='1'
           style={{ display: 'none' }}
           alt=''
-          src={`https://px.ads.linkedin.com/collect/?pid=${partnerId}&fmt=gif`}
+          src={`https://px.ads.linkedin.com/collect/?pid=${encodeURIComponent(
+            pid
+          )}&fmt=gif`}
         />
       </noscript>
     </>
