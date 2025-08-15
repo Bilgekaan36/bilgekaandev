@@ -79,7 +79,8 @@ export const HeroSection = () => {
           <div className='max-w-3xl flex-none sm:max-w-5xl lg:max-w-none'>
             <Image
               alt='Bilgekaan'
-              src='/yilmaz.png'
+              src='/yilmaz.webp'
+              priority
               width={2000}
               height={2000}
               className='w-125 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10'

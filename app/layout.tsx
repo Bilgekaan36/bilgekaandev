@@ -13,7 +13,7 @@ import {
   ConsentProvider,
   useConsent,
 } from '@/components/cookie-consent/ConsentProvider';
-import LinkedInInsight from '@/components/cookie-consent/LinkedInInsight';
+// import LinkedInInsight from '@/components/cookie-consent/LinkedInInsight';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -28,7 +28,7 @@ const orbitron = Orbitron({
 });
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const DOMAIN = process.env.NEXT_PUBLIC_SITE_DOMAIN ?? 'localhost';
+// const DOMAIN = process.env.NEXT_PUBLIC_SITE_DOMAIN ?? 'localhost';
 
 function GAConsentSync() {
   // Sobald der Nutzer Analytics erlaubt, Consent-Flags auf "granted" setzen.
@@ -69,7 +69,11 @@ function GAConsentSync() {
   );
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang='de'>
       <body
@@ -104,12 +108,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </ScriptGate>
 
           {/* --- LinkedIn Insight Tag NUR bei Marketing-Consent --- */}
-          <ScriptGate allow='marketing'>
+          {/* <ScriptGate allow='marketing'>
             <LinkedInInsight
               pid={process.env.NEXT_PUBLIC_LINKEDIN_PID}
               domain={DOMAIN}
             />
-          </ScriptGate>
+          </ScriptGate> */}
 
           {/* Seite */}
           <Navbar />

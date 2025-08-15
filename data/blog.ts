@@ -40,7 +40,7 @@ export interface BlogPost {
   date: string;
   title: string;
   excerpt: string;
-  featuredImage: string;
+  featuredImage?: string;
   author: {
     name: string;
     role: string;
@@ -150,7 +150,7 @@ export const blogPosts: BlogPost[] = [
     title: 'TypeScript 6 – Was die neuen Features für große Codebases bedeuten',
     excerpt:
       'TypeScript 6 bringt entscheidende Verbesserungen für große Codebases – von präziseren Generics über stabile Dekoratoren bis hin zu smarterem Resource-Management.',
-    featuredImage: '/blog/1_blog/typescript6.png',
+    featuredImage: undefined,
     author: {
       name: 'Bilgekaan Yilmaz',
       role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',

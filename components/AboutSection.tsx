@@ -1,7 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Image from 'next/image';
-import { HighlightText } from './ui/highlight-text';
 import { GradientText } from './ui/gradient-text';
+
+/* -------- deterministic PRNG: sfc32 + String-Seed -------- */
+function sfc32(a: number, b: number, c: number, d: number) {
+  return function () {
+    a |= 0;
+    b |= 0;
+    c |= 0;
+    d |= 0;
+    let t = (((a + b) | 0) + d) | 0;
+    d = (d + 1) | 0;
+    a = b ^ (b >>> 9);
+    b = (c + (c << 3)) | 0;
+    c = (c << 21) | (c >>> 11);
+    t = (t + (t << 3)) | 0;
+    t = t ^ (t >>> 7);
+    t = (t + (t << 1)) | 0;
+    return (t >>> 0) / 4294967296;
+  };
+}
+function hashSeed(str: string): [number, number, number, number] {
+  let h1 = 1779033703,
+    h2 = 3144134277,
+    h3 = 1013904242,
+    h4 = 2773480762;
+  for (let i = 0; i < str.length; i++) {
+    const k = str.charCodeAt(i);
+    h1 = (h2 ^ Math.imul(h1 ^ k, 597399067)) | 0;
+    h2 = (h3 ^ Math.imul(h2 ^ k, 2869860233)) | 0;
+    h3 = (h4 ^ Math.imul(h3 ^ k, 951274213)) | 0;
+    h4 = (h1 ^ Math.imul(h4 ^ k, 2716044179)) | 0;
+  }
+  return [h1, h2, h3, h4];
+}
+/* --------------------------------------------------------- */
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,15 +65,24 @@ export const AboutSection = () => {
     },
   ];
 
+  // Partikel deterministisch erzeugen (identisch in SSR & Client)
+  const particles = useMemo(() => {
+    const rng = sfc32(...hashSeed('about-particles-v1'));
+    const count = 20;
+    return Array.from({ length: count }).map((_, i) => {
+      const left = `${(rng() * 100).toFixed(4)}%`;
+      const top = `${(rng() * 100).toFixed(4)}%`;
+      const delay = `${(rng() * 2).toFixed(3)}s`;
+      const duration = `${(2 + rng() * 3).toFixed(3)}s`;
+      return { id: `p-${i}`, left, top, delay, duration };
+    });
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
-
       const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Check if section is visible for animations
-      const isInView = rect.top < windowHeight && rect.bottom > 0;
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
       setIsVisible(isInView);
     };
 
@@ -55,7 +99,6 @@ export const AboutSection = () => {
 
     window.addEventListener('scroll', throttledHandleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
@@ -66,17 +109,17 @@ export const AboutSection = () => {
       className='min-h-[150vh] py-12 relative overflow-hidden'
       style={{ backgroundColor: '#101828' }}
     >
-      {/* Animated floating particles */}
+      {/* Animated floating particles (deterministisch) */}
       <div className='absolute inset-0 overflow-hidden'>
-        {[...Array(20)].map((_, i) => (
+        {particles.map((p) => (
           <div
-            key={i}
-            className={`absolute w-2 h-2 bg-white/20 rounded-full animate-pulse`}
+            key={p.id}
+            className='absolute w-2 h-2 bg-white/20 rounded-full animate-pulse'
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              left: p.left,
+              top: p.top,
+              animationDelay: p.delay, // camelCase in React
+              animationDuration: p.duration, // camelCase in React
             }}
           />
         ))}
@@ -87,8 +130,8 @@ export const AboutSection = () => {
 
       <div className='relative min-h-screen flex items-center justify-center px-6'>
         <div className='max-w-7xl mx-auto items-center'>
-          {/* Title Content */}
-          <div className={`space-y-8 mb-14`}>
+          {/* Title */}
+          <div className='space-y-8 mb-14'>
             <div className='text-center space-y-16 flex flex-col items-center'>
               <div className='font-orbitron text-center mb-10 md:mb-16 lg:mb-20'>
                 <h2 className='font-orbitron font-semibold leading-none text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight mt-4 md:mt-5'>
@@ -113,17 +156,17 @@ export const AboutSection = () => {
                   {' '}
                   robuste Backends mit Node.js
                 </span>
-                . Ich bin es gewohnt, in{' '}
+                . Ich bin es gewohnt, in
                 <span className='font-semibold text-white'>
                   {' '}
                   agilen Teams
                 </span>{' '}
-                zu arbeiten, mich{' '}
+                zu arbeiten, mich
                 <span className='font-semibold text-white'>
                   {' '}
                   schnell in bestehende Codebasen
                 </span>{' '}
-                einzuarbeiten und{' '}
+                einzuarbeiten und
                 <span className='font-semibold text-white'>
                   {' '}
                   komplexe Anforderungen
@@ -138,9 +181,9 @@ export const AboutSection = () => {
             </div>
           </div>
 
-          {/* Image Content - Image with floating achievements */}
-          <div className={`relative`}>
-            <div className='relative w-full mx-auto flex flex-col  justify-center items-center'>
+          {/* Image + Achievements */}
+          <div className='relative'>
+            <div className='relative w-full mx-auto flex flex-col justify-center items-center'>
               {/* Main profile image */}
               <div className='relative z-10 max-w-7xl'>
                 <div className='aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 shadow-2xl'>
@@ -150,11 +193,12 @@ export const AboutSection = () => {
                     width={2000}
                     height={2000}
                     className='w-full h-full object-cover grayscale'
+                    priority
                   />
                 </div>
               </div>
 
-              {/* Floating achievement badges */}
+              {/* Floating achievement badges (Desktop) */}
               <div className='hidden sm:block'>
                 {achievements.map((achievement, index) => (
                   <div
@@ -167,19 +211,17 @@ export const AboutSection = () => {
                         : `translate(${
                             index % 2 === 0 ? '-20px' : '20px'
                           }, 20px) scale(0.85)`,
+                      transition: 'transform 500ms ease',
                     }}
                   >
                     <div className='group relative animate-float'>
                       {/* Gradient Border Glow */}
                       <div className='absolute inset-0 rounded-lg p-[1.5px] bg-gradient-to-r from-[#61dafb] via-[#4cc3a5] to-[#41b883] blur-sm opacity-80 group-hover:opacity-100 transition-all duration-300' />
-
                       {/* Card Body */}
                       <div className='relative bg-white/10 backdrop-blur-md text-white px-3 py-2 rounded-lg shadow-lg border border-white/20 group-hover:scale-105 transition-all duration-300'>
                         <span className='font-semibold text-xs lg:text-sm whitespace-nowrap'>
                           {achievement.text}
                         </span>
-
-                        {/* Hover Glow Overlay */}
                         <div className='absolute inset-0 rounded-lg bg-gradient-to-r from-[#61dafb]/10 to-[#41b883]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
                       </div>
                     </div>
@@ -187,7 +229,7 @@ export const AboutSection = () => {
                 ))}
               </div>
 
-              {/* Mobile version - stacked below image */}
+              {/* Mobile achievements (stacked) */}
               <div className='mt-6 grid grid-cols-1 gap-3 sm:hidden'>
                 {achievements.map((achievement, index) => (
                   <div
@@ -201,7 +243,7 @@ export const AboutSection = () => {
                 ))}
               </div>
 
-              {/* Decorative elements */}
+              {/* Decorative gradients */}
               <div className='absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-[#61dafb]/20 via-[#4cc3a5]/20 to-[#41b883]/20 rounded-full blur-2xl animate-pulse' />
               <div
                 className='absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-br from-[#41b883]/20 via-[#4cc3a5]/20 to-[#61dafb]/20 rounded-full blur-xl animate-pulse'
@@ -209,6 +251,7 @@ export const AboutSection = () => {
               />
             </div>
           </div>
+
           <div className='max-w-7xl mx-auto text-center items-center'>
             <div className='pt-18 flex flex-col items-center'>
               <p className='text-lg lg:text-xl text-white/90 leading-relaxed max-w-3xl'>
@@ -216,12 +259,12 @@ export const AboutSection = () => {
                 <span className='font-semibold text-white'>
                   „Code abliefern“
                 </span>
-                , sondern{' '}
+                , sondern
                 <span className='font-semibold text-white'>
                   {' '}
                   aktiv zum Projekterfolg beitragen
                 </span>{' '}
-                durch{' '}
+                durch
                 <span className='font-semibold text-white'>
                   {' '}
                   saubere Architektur
@@ -247,7 +290,7 @@ export const AboutSection = () => {
       <div
         className='absolute bottom-0 left-0 right-0 h-32'
         style={{
-          background: `linear-gradient(to bottom, transparent, #101828)`,
+          background: 'linear-gradient(to bottom, transparent, #101828)',
         }}
       />
     </div>
