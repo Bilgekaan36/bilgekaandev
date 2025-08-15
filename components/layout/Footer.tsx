@@ -211,7 +211,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <ManageCookiesButton />
+      {/* <ManageCookiesButton /> */}
     </footer>
   );
 };
