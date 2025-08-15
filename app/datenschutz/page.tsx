@@ -23,11 +23,11 @@ export default function Datenschutz() {
   // zentral gepflegte Kontaktdaten
   const controller = {
     name: 'Bilgekaan Yilmaz',
-    street: 'Musterstraße 12',
-    zip: '74072',
+    street: 'Herbert-Hoover-Straße 19',
+    zip: '74074',
     city: 'Heilbronn',
     country: 'Deutschland',
-    email: 'bilgekaan-yilmaz@outlook.com',
+    email: 'info@bilgekaan.dev',
   };
 
   return (
@@ -36,7 +36,10 @@ export default function Datenschutz() {
       <section className='relative'>
         <div className='max-w-7xl mx-auto px-6 pt-24 pb-8'>
           <h1 className='font-orbitron text-4xl md:text-5xl font-bold leading-tight'>
-            <GradientText text='Datenschutzerklärung' />
+            <GradientText
+              className='inline break-words'
+              text='Datenschutzerklärung'
+            />
           </h1>
           <p className='mt-4 text-gray-400 max-w-2xl'>
             Diese Erklärung informiert über Art, Umfang und Zwecke der

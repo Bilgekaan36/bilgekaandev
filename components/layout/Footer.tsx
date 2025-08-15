@@ -1,12 +1,10 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { GradientText } from '../ui/gradient-text';
 import { AnimatedCTAButton } from '../custom/AnimatedCTAButtons';
-import ManageCookiesButton from '../cookie-consent/ManageCookiesButton';
+// import ManageCookiesButton from '../cookie-consent/ManageCookiesButton';
 
 // zentrale Icon-Konfiguration
 type Social =

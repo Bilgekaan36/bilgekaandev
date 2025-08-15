@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 export default function Impressum() {
   const address = {
     name: 'Bilgekaan Yilmaz',
-    street: 'Musterstraße 12',
-    zip: '74072',
+    street: 'Herbert-Hoover-Straße 19',
+    zip: '74074',
     city: 'Heilbronn',
     country: 'Deutschland',
   };
 
   const phone = '+49 176 80423919';
-  const email = 'bilgekaan-yilmaz@outlook.com';
+  const email = 'info@bilgekaan.dev';
 
   return (
     <main className='bg-gray-900 text-white'>
@@ -107,11 +107,10 @@ export default function Impressum() {
             <p className='text-gray-300'>{address.name}, Anschrift wie oben.</p>
 
             <div className='mt-6 space-y-2 text-gray-400 text-sm'>
-              <p>
+              {/* <p>
                 <span className='text-gray-500'>Umsatzsteuer-ID:</span>{' '}
-                {/* Falls vorhanden einsetzen oder Zeile entfernen */}
                 DE123456789
-              </p>
+              </p> */}
               <p className='flex items-center gap-2'>
                 <Globe className='h-4 w-4' />
                 <span>Geltungsbereich: Deutschland / EU</span>
