@@ -50,7 +50,7 @@ export const BentoGridSection = () => {
               <div className='@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm'>
                 <div className='absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 shadow-2xl'>
                   <Image
-                    alt=''
+                    alt=' Performance-Optimierung Illustration'
                     src='/lightspeed.svg'
                     className='size-full object-cover'
                     height={100}
@@ -91,7 +91,7 @@ export const BentoGridSection = () => {
               </div>
               <div className='flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2'>
                 <Image
-                  alt=''
+                  alt='Schnelle Integration ins Team Illustration'
                   src='https://tailwindcss.com/plus-assets/img/component-images/bento-03-performance.png'
                   className='w-full max-lg:max-w-xs'
                   height={100}
@@ -134,7 +134,7 @@ export const BentoGridSection = () => {
               </div>
               <div className='@container flex flex-1 items-center max-lg:py-6 lg:pb-2'>
                 <Image
-                  alt=''
+                  alt='Sichere & stabile Systeme Illustration'
                   src='https://tailwindcss.com/plus-assets/img/component-images/bento-03-security.png'
                   className='h-[min(152px,40cqw)] object-cover'
                   height={1000}

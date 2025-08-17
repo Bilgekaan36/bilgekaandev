@@ -50,7 +50,7 @@ export default function LinkedInInsight({ pid }: Props) {
           height='1'
           width='1'
           style={{ display: 'none' }}
-          alt=''
+          alt='LinkedInInsight Logo'
           src={`https://px.ads.linkedin.com/collect/?pid=${encodeURIComponent(
             pid
           )}&fmt=gif`}

@@ -150,7 +150,7 @@ export const blogPosts: BlogPost[] = [
     title: 'TypeScript 6 – Was die neuen Features für große Codebases bedeuten',
     excerpt:
       'TypeScript 6 bringt entscheidende Verbesserungen für große Codebases – von präziseren Generics über stabile Dekoratoren bis hin zu smarterem Resource-Management.',
-    featuredImage: undefined,
+    featuredImage: '/blog/2_blog/hero.png',
     author: {
       name: 'Bilgekaan Yilmaz',
       role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',
@@ -246,45 +246,166 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    slug: 'webflow-multistep-formulare',
+    slug: 'react-19-upgrade-gamechanger',
     category: 'TUTORIAL',
-    date: '22. April 2025',
-    title:
-      'Mehr qualifizierte Leads mit Webflow: Multistep-Formulare effektiv nutzen',
+    date: '17. August 2025',
+    title: 'React 19 – Das Upgrade, das dein Frontend-Spiel verändert',
     excerpt:
-      'Wie Sie mit mehrstufigen Formularen in Webflow die Conversion-Rate steigern und qualifiziertere Leads generieren.',
-    featuredImage: '/blog/multistep-forms.jpg',
+      'React 19 bringt zahlreiche Neuerungen, die nicht nur syntaktisch glänzen, sondern den Entwicklungsalltag spürbar erleichtern – von intelligenten Formularaktionen bis hin zu stabilen Event-Handlern.',
+    featuredImage: '/blog/3_blog/hero.jpg',
     author: {
       name: 'Bilgekaan Yilmaz',
-      role: 'Webflow Experte',
-      avatar: '/avatars/soenke.jpg',
+      role: 'Fullstack Entwickler (React/Next.js, Node.js, TypeScript)',
+      avatar: '/avatars/bilgekaan.png',
     },
-    readTime: '10 Min',
-    featured: false,
+    readTime: '9 Min',
+    featured: true,
     sections: [
       {
-        id: 'warum-multistep',
-        title: 'Warum Multistep-Formulare?',
+        id: 'intro',
+        title: 'Einleitung',
         content:
-          'Multistep-Formulare reduzieren die kognitive Belastung und erhöhen nachweislich die Completion-Rate um bis zu 300%.',
+          'Mit React 19 bringt Meta das bisher rundeste Update seit der Einführung von Hooks. Statt nur kosmetischer Neuerungen erwarten dich tiefgreifende Verbesserungen in der Handhabung von Formularen, serverseitigem Rendering und asynchronem UI-Verhalten. Gerade für skalierende Anwendungen mit Fokus auf UX und Developer Productivity ist dieses Release ein Gamechanger.',
       },
       {
-        id: 'psychologie',
-        title: 'Die Psychologie dahinter',
+        id: 'form-actions',
+        title: 'Native Form Actions – Direkt zum Punkt',
         content:
-          'Durch die Aufteilung in kleine, überschaubare Schritte wird der Fortschritt sichtbar und die Motivation steigt.',
+          'Formularverarbeitung war bisher oft ein Flickwerk aus preventDefault, Fetch und State-Handling. Mit React 19 kannst du direkt eine Serverfunktion binden – minimalistisch und sicher.',
+        code: {
+          language: 'tsx',
+          code: `// server.ts
+'use server';
+
+export async function handleContact(data: FormData) {
+  const message = data.get("message");
+  await sendToCRM(message);
+}
+
+// client.tsx
+<form action={handleContact}>
+  <textarea name="message" placeholder="Nachricht schreiben..." />
+  <button type="submit">Senden</button>
+</form>`,
+          filename: 'contactForm.tsx',
+        },
       },
       {
-        id: 'implementation',
-        title: 'Technische Umsetzung in Webflow',
+        id: 'use-optimistic',
+        title: 'useOptimistic – Optimistisches UI ohne Chaos',
         content:
-          'Schritt-für-Schritt Anleitung zur Erstellung eines Multistep-Formulars mit Webflow Interactions.',
+          'Reaktive UX bedeutet schnelles Feedback – aber ohne unnötiges State-Wirrwarr. useOptimistic ermöglicht vorausschauende UI-Reaktionen, bevor der Server antwortet.',
+        code: {
+          language: 'tsx',
+          code: `const [items, addItem] = useOptimistic([], (prev, next) => [...prev, next]);
+
+const onSubmit = async (formData: FormData) => {
+  const name = formData.get("name");
+  addItem({ name });
+
+  await saveToBackend(name);
+};`,
+          filename: 'optimisticItem.tsx',
+        },
       },
       {
-        id: 'best-practices',
-        title: 'Best Practices',
+        id: 'use',
+        title: 'use() – Promises direkt in Komponenten',
         content:
-          'Von Progress-Bars bis zur optimalen Anzahl von Feldern pro Schritt - diese Tipps maximieren Ihre Conversions.',
+          'Dank des neuen use()-Hooks kannst du nun direkt in Komponenten auf Promises zugreifen. Kein useEffect, kein State-Management – pure Klarheit.',
+        code: {
+          language: 'tsx',
+          code: `async function fetchStats() {
+  const res = await fetch("/api/stats");
+  return res.json();
+}
+
+export default function Dashboard() {
+  const stats = use(fetchStats());
+
+  return <div>{stats.views} Aufrufe</div>;
+}`,
+          filename: 'dashboard.tsx',
+        },
+      },
+      {
+        id: 'form-status',
+        title: 'useFormStatus – Formulare, die kommunizieren',
+        content:
+          'Mit useFormStatus kannst du den Zustand von Formularen gezielt anzeigen – z. B. Ladeindikatoren beim Absenden. Kein eigener State nötig.',
+        code: {
+          language: 'tsx',
+          code: `function SubmitButton() {
+  const { pending } = useFormStatus();
+  return <button disabled={pending}>{pending ? "Lädt…" : "Absenden"}</button>;
+}`,
+          filename: 'submitButton.tsx',
+        },
+      },
+      {
+        id: 'custom-elements',
+        title: 'Web Components – Jetzt offiziell unterstützt',
+        content:
+          'React 19 unterstützt native Custom Elements. Du kannst Web Components wie gewohnt nutzen – inklusive Eventbindung.',
+        code: {
+          language: 'tsx',
+          code: `useEffect(() => {
+  const widget = document.querySelector("user-badge");
+  widget?.addEventListener("ready", () => console.log("Widget bereit"));
+}, []);
+
+// JSX
+<user-badge data-user="42"></user-badge>`,
+          filename: 'customElements.tsx',
+        },
+      },
+      {
+        id: 'server-components',
+        title: 'Server Components – Jetzt stabil und produktionsreif',
+        content:
+          'Server Components sparen JS im Client, beschleunigen dein UI und eliminieren Prop-Drilling. Ideal für die App-Directory in Next.js.',
+        code: {
+          language: 'tsx',
+          code: `// app/products/page.tsx (Server Component)
+export default async function Products() {
+  const res = await fetch("https://api.example.com/products");
+  const products = await res.json();
+
+  return (
+    <ul>
+      {products.map((p) => (
+        <li key={p.id}>{p.name}</li>
+      ))}
+    </ul>
+  );
+}`,
+          filename: 'productsPage.tsx',
+        },
+      },
+      {
+        id: 'use-event',
+        title: 'useEvent – Endlich stabile Callback-Referenzen',
+        content:
+          'Mit useEvent schreibst du Eventhandler, die sich nicht auf magische Weise bei jedem Render ändern. Ideal für Performance und Klarheit.',
+        code: {
+          language: 'tsx',
+          code: `function LoggerButton() {
+  const [value, setValue] = useState("Init");
+
+  const logValue = useEvent(() => {
+    console.log("Aktueller Wert:", value);
+  });
+
+  return <button onClick={logValue}>Log</button>;
+}`,
+          filename: 'logger.tsx',
+        },
+      },
+      {
+        id: 'fazit',
+        title: 'Fazit – Solltest du upgraden?',
+        content:
+          'React 19 ist kein kosmetisches Update, sondern ein Qualitäts-Boost für deine Codebase. Es vereinfacht gängige Muster, reduziert Boilerplate und bringt moderne Konzepte wie Server Components und Web Component Integration auf die nächste Stufe. Wer moderne UX und wartbare Codearchitektur ernst nimmt, sollte dieses Update einplanen.',
       },
     ],
   },
